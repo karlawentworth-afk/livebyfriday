@@ -9,7 +9,7 @@ window.LBF = {
   // security that allows insert and nothing else, so nobody can read
   // anything back out with it.
   SUPABASE_URL: "https://tzzoileuvbvvflrcuhgu.supabase.co",
-  SUPABASE_ANON_KEY: "PASTE_ANON_KEY_HERE",
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR6em9pbGV1dmJ2dmZscmN1aGd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgxOTUwMzEsImV4cCI6MjEwMzc3MTAzMX0.0XdORO1Q5K94lc_nsl8deenARl8lN0WN_LkGfBTBmY4",
   BUCKET: "intake",
 
   // Stripe payment links, one per package.
