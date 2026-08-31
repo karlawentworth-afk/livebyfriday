@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Start your site &middot; Live by Friday</title>
+<meta name="description" content="Fifteen minutes and your website is on its way. Tell us about the business, drop your photos in, and we will send you a link.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Public+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#FCFBF8;--paper-2:#F3F1EA;--ink:#15171C;--ink-2:#565C66;
+  --rule:#E0DDD3;--rule-hard:#15171C;--hi:#F6B900;--hi-ink:#15171C;
+  --band:#15171C;--band-ink:#FBFAF6;--band-ink-2:#A0A6AF;--ok:#2C6742;--bad:#A9482F;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#121317;--paper-2:#191B20;--ink:#F1EFE8;--ink-2:#979DA6;
+    --rule:#2B2E35;--rule-hard:#4A4F58;--band:#1E2127;--band-ink:#F1EFE8;--band-ink-2:#9AA0A9;
+    --ok:#6FBF8E;--bad:#E08A72;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121317;--paper-2:#191B20;--ink:#F1EFE8;--ink-2:#979DA6;
+  --rule:#2B2E35;--rule-hard:#4A4F58;--band:#1E2127;--band-ink:#F1EFE8;--band-ink-2:#9AA0A9;
+  --ok:#6FBF8E;--bad:#E08A72;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px}
+h1,h2,legend{font-family:"Archivo",Helvetica,Arial,sans-serif;font-variation-settings:"wdth" 108;font-weight:800;letter-spacing:-0.022em;line-height:1.05;margin:0;text-wrap:balance}
+h1{font-size:clamp(2rem,5.5vw,3.1rem)}
+p{margin:0}
+.label{font-family:"DM Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+
+.masthead{border-bottom:2px solid var(--rule-hard);background:var(--paper)}
+.masthead .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:960px}
+.mark{display:flex;align-items:center;text-decoration:none}
+.mark img{width:150px;height:auto;display:block}
+@media (max-width:520px){.mark img{width:112px}}
+.mark .bolt{display:inline-grid;place-items:center;width:25px;height:25px;background:var(--hi);color:var(--hi-ink);font-size:.86rem;transform:translateY(4px)}
+.saved{font-family:"DM Mono",monospace;font-size:.7rem;color:var(--ink-2);opacity:0;transition:opacity .3s ease}
+.saved.on{opacity:1}
+
+.top{padding:52px 0 34px}
+.top h1{margin-bottom:16px}
+.top p{color:var(--ink-2);max-width:46ch}
+.prog{display:flex;gap:5px;margin-top:30px}
+.prog i{height:5px;flex:1;background:var(--rule);transition:background .3s ease}
+.prog i.on{background:var(--hi)}
+
+fieldset{border:0;border-top:2px solid var(--rule-hard);margin:0 0 8px;padding:26px 0 30px}
+legend{font-size:1.35rem;padding:0;margin-bottom:6px}
+.hint{color:var(--ink-2);font-size:.92rem;margin-bottom:22px;max-width:52ch}
+.row{display:grid;gap:18px;margin-bottom:18px}
+.row.two{grid-template-columns:1fr 1fr}
+@media (max-width:600px){.row.two{grid-template-columns:1fr}}
+label{display:block}
+.lb{display:block;font-weight:600;font-size:.92rem;margin-bottom:6px}
+.lb i{font-style:normal;font-weight:400;color:var(--ink-2)}
+input[type=text],input[type=email],input[type=tel],select,textarea{
+  width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--paper-2);
+  border:1px solid var(--rule);border-radius:0;padding:12px 13px;transition:border-color .15s ease,box-shadow .15s ease;
+}
+textarea{min-height:92px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ink);box-shadow:0 0 0 3px var(--hi)}
+input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
+.err{border-color:var(--bad)!important}
+.errmsg{color:var(--bad);font-size:.85rem;margin-top:6px;display:none}
+.errmsg.on{display:block}
+
+.svc{display:grid;grid-template-columns:1.1fr 1.8fr .7fr;gap:10px;margin-bottom:10px}
+@media (max-width:680px){.svc{grid-template-columns:1fr}}
+
+.pickers{display:flex;flex-wrap:wrap;gap:8px}
+.pick{font:inherit;font-size:.88rem;font-weight:600;padding:8px 14px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);cursor:pointer;transition:all .14s ease}
+.pick:hover{border-color:var(--ink-2);color:var(--ink)}
+.pick[aria-pressed="true"]{background:var(--hi);border-color:var(--rule-hard);color:var(--hi-ink)}
+.swatch{display:inline-block;width:11px;height:11px;margin-right:7px;vertical-align:-1px;border:1px solid rgba(0,0,0,.25)}
+
+.drop{border:2px dashed var(--rule);padding:26px 20px;text-align:center;cursor:pointer;transition:border-color .15s ease,background .15s ease}
+.drop:hover,.drop.over{border-color:var(--hi);background:var(--paper-2)}
+.drop b{display:block;font-family:"Archivo",sans-serif;font-weight:700;font-size:1rem;margin-bottom:4px}
+.drop span{color:var(--ink-2);font-size:.88rem}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;margin-top:14px}
+.thumb{position:relative;aspect-ratio:1;background:var(--paper-2);border:1px solid var(--rule);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb button{position:absolute;top:3px;right:3px;width:22px;height:22px;border:0;background:var(--rule-hard);color:var(--paper);cursor:pointer;font-size:.8rem;line-height:1}
+
+.plans{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--rule-hard)}
+@media (max-width:680px){.plans{grid-template-columns:1fr}}
+.plan{padding:18px 16px;border-right:1px solid var(--rule);background:none;text-align:left;cursor:pointer;font:inherit;color:var(--ink);transition:background .14s ease}
+.plan:last-child{border-right:0}
+@media (max-width:680px){.plan{border-right:0;border-bottom:1px solid var(--rule)}.plan:last-child{border-bottom:0}}
+.plan:hover{background:var(--paper-2)}
+.plan[aria-pressed="true"]{background:var(--band);color:var(--band-ink)}
+.plan[aria-pressed="true"] .pn{color:var(--hi)}
+.plan .pn{font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2)}
+.plan .pp{font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 115;font-weight:800;font-size:1.9rem;letter-spacing:-0.03em;line-height:1.1;margin-top:6px;font-variant-numeric:tabular-nums}
+.plan .pd{font-size:.82rem;color:var(--ink-2);margin-top:4px}
+.plan[aria-pressed="true"] .pd{color:var(--band-ink-2)}
+
+.promo{margin-top:20px;background:var(--hi);color:var(--hi-ink);padding:12px 16px;font-size:.92rem;font-weight:600}
+.promo code{font-family:"DM Mono",monospace;font-weight:500;background:var(--hi-ink);color:var(--hi);padding:2px 7px}
+
+.routes{display:grid;gap:14px;margin-top:28px}
+.btn{display:block;width:100%;font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 105;font-weight:700;font-size:1rem;padding:16px 22px;border:2px solid var(--rule-hard);background:var(--hi);color:var(--hi-ink);cursor:pointer;box-shadow:4px 4px 0 var(--rule-hard);transition:transform .12s ease,box-shadow .12s ease;text-align:center}
+.btn:hover:not(:disabled){transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--rule-hard)}
+.btn:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 var(--rule-hard)}
+.btn:disabled{opacity:.55;cursor:progress}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn small{display:block;font-family:"Public Sans",sans-serif;font-weight:400;font-size:.82rem;margin-top:3px;opacity:.75}
+:focus-visible{outline:3px solid var(--hi);outline-offset:3px}
+
+.status{margin-top:18px;font-size:.92rem;min-height:1.5em}
+.status.bad{color:var(--bad)}
+.status.ok{color:var(--ok)}
+.foot{border-top:1px solid var(--rule);margin-top:50px;padding:22px 0 60px;font-size:.84rem;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="mark" href="/"><img src="/logo.png" alt="Live by Friday" width="150"></a>
+    <span class="saved" id="saved">Draft saved</span>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="top">
+    <h1>Right then. Tell me about the business.</h1>
+    <p>Fifteen minutes, and most of it is stuff you know off the top of your head. It saves as you go, so you can stop halfway and come back on your phone later.</p>
+    <div class="prog" id="prog"><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+
+  <form id="f" novalidate>
+
+    <fieldset>
+      <legend>The business</legend>
+      <p class="hint">Just the basics. If you have not settled on wording, put it how you would say it to someone in the pub.</p>
+      <div class="row two">
+        <label><span class="lb">Business name</span>
+          <input type="text" name="business_name" required placeholder="Marsh Lane Dog Grooming" autocomplete="organization">
+          <span class="errmsg">I need something to put at the top of the page.</span></label>
+        <label><span class="lb">What sort of business is it?</span>
+          <select name="trade">
+            <option value="">Choose one</option>
+            <option>Trades and building</option><option>Plumbing, heating, electrical</option>
+            <option>Gardening and outdoors</option><option>Cleaning</option>
+            <option>Hair, beauty and nails</option><option>Health and therapy</option>
+            <option>Pets and animals</option><option>Childcare and education</option>
+            <option>Food and drink</option><option>Shop or market stall</option>
+            <option>Photography and creative</option><option>Fitness and coaching</option>
+            <option>Professional services</option><option>Something else</option>
+          </select></label>
+      </div>
+      <div class="row">
+        <label><span class="lb">What do you do, in one sentence?</span>
+          <input type="text" name="one_liner" placeholder="Calm, careful dog grooming, one dog at a time, no cages"></label>
+      </div>
+      <div class="row two">
+        <label><span class="lb">Where are you, or where do you cover?</span>
+          <input type="text" name="area" placeholder="Bedminster, Bristol. Or: Kettering and 20 miles round"></label>
+        <label><span class="lb">Anything else I should know? <i>optional</i></span>
+          <input type="text" name="notes" placeholder="Twelve years doing this, nervous dogs a speciality"></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>What you do, and what it costs</legend>
+      <p class="hint">Up to three. Leave the price blank if you would rather not put prices up, though people do ring more when you do.</p>
+      <div id="svcs"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>How people reach you</legend>
+      <p class="hint">The phone number becomes a tap to call button, and enquiries land in whichever inbox you already check.</p>
+      <div class="row two">
+        <label><span class="lb">Your name</span><input type="text" name="contact_name" placeholder="Jo Bennett" autocomplete="name"></label>
+        <label><span class="lb">Phone</span><input type="tel" name="phone" placeholder="0117 496 0184" autocomplete="tel"></label>
+      </div>
+      <div class="row two">
+        <label><span class="lb">Email</span>
+          <input type="email" name="email" required placeholder="jo@example.com" autocomplete="email">
+          <span class="errmsg">I need a working email to send your site to.</span></label>
+        <label><span class="lb">Opening hours <i>optional</i></span><input type="text" name="hours" placeholder="Tues to Sat, 8.30am to 5pm"></label>
+      </div>
+      <div class="row">
+        <label><span class="lb">Address <i>optional, leave blank if you work from home</i></span>
+          <input type="text" name="address" placeholder="14 Marsh Lane, Bristol BS3 4QT"></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Your web address</legend>
+      <p class="hint">It gets registered in your name with your details. Yours to keep, and yours to take elsewhere if you ever want to.</p>
+      <div class="row two">
+        <label><span class="lb">What would you like it to be?</span>
+          <input type="text" name="domain_wanted" placeholder="marshlanedoggrooming.co.uk">
+          <span class="errmsg"></span></label>
+        <label><span class="lb">Or, already own one? <i>knocks &pound;15 off</i></span>
+          <input type="text" name="domain_existing" placeholder="theoneialreadyhave.co.uk"></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>The look</legend>
+      <p class="hint">Skip this bit entirely if you would rather I chose. That is usually the better answer, and you can change your mind for free once you have seen it.</p>
+      <div class="row">
+        <span class="lb">Style</span>
+        <div class="pickers" id="styles"></div>
+      </div>
+      <div class="row">
+        <span class="lb">Colour</span>
+        <div class="pickers" id="pals"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Your photos</legend>
+      <p class="hint">Up to six, straight off your phone. Sideways ones are fine, I will sort them out. No photos at all is also fine, we will manage.</p>
+      <div class="drop" id="drop" tabindex="0" role="button" aria-label="Add photos">
+        <b>Tap to add photos</b>
+        <span>Up to 6, JPG or PNG, 10MB each</span>
+      </div>
+      <input type="file" id="files" accept="image/*" multiple hidden>
+      <div class="thumbs" id="thumbs"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Which one do you want?</legend>
+      <p class="hint">All three include the domain, the hosting and twelve months live. Then it is &pound;49 a year, cancel whenever.</p>
+      <div class="plans" id="plans"></div>
+      <div class="promo" id="promo" hidden></div>
+
+      <div class="routes">
+        <button class="btn" type="button" id="payNow">Pay now and I will start today
+          <small id="payNowSub">Straight to checkout, then the photos and details go over</small></button>
+        <button class="btn ghost" type="button" id="previewFirst">Send it to me first, I will pay if I like it
+          <small>You see the finished site before a penny changes hands</small></button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+    </fieldset>
+  </form>
+
+  <div class="foot">
+    <span>Live by Friday &middot; livebyfriday.co.uk</span>
+    <span>Your details are only used to build your site.</span>
+  </div>
+</div>
+
+<script src="/config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var C = window.LBF;
+  var db = window.supabase.createClient(C.SUPABASE_URL, C.SUPABASE_ANON_KEY);
+
+  var STYLES = ["Classic","Modern","Friendly","Workhorse","Quirky"];
+  var PALS = [["Slate","#33628F"],["Clay","#A9482F"],["Forest","#2C6742"],
+              ["Navy","#7C590F"],["Berry","#8C3A5E"],["Mono","#141414"]];
+  var PLANS = [
+    ["site","Just the site", C.PRICES.site, "One page, 6 photos"],
+    ["sorted","Sorted", C.PRICES.sorted, "I write the words too"],
+    ["lot","The lot", C.PRICES.lot, "Two years, both addresses"]
+  ];
+
+  var $ = function(id){ return document.getElementById(id); };
+  var form = $("f"), statusEl = $("status");
+  var chosen = { style:null, palette:null, plan:"site" };
+  var photos = [];          // {file, url}
+  var busy = false;
+
+  /* ---- services rows ---- */
+  var svcs = $("svcs");
+  for(var i=0;i<3;i++){
+    var d = document.createElement("div");
+    d.className = "svc";
+    d.innerHTML =
+      '<input type="text" data-svc="name" placeholder="' + ["Full groom","Bath and tidy","Puppy first visit"][i] + '">' +
+      '<input type="text" data-svc="desc" placeholder="' + ["Bath, dry, clip, nails and ears","Wash, blow dry, a quick trim","A gentle half hour"][i] + '">' +
+      '<input type="text" data-svc="price" placeholder="' + ["from £45","from £28","£20"][i] + '">';
+    svcs.appendChild(d);
+  }
+
+  /* ---- pickers ---- */
+  function picker(host, items, key, render){
+    items.forEach(function(it){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "pick";
+      b.setAttribute("aria-pressed","false");
+      b.innerHTML = render(it);
+      b.addEventListener("click", function(){
+        var name = Array.isArray(it) ? it[0] : it;
+        chosen[key] = (chosen[key] === name) ? null : name;   // click again to clear
+        host.querySelectorAll(".pick").forEach(function(x){
+          x.setAttribute("aria-pressed", String(x.dataset.v === chosen[key]));
+        });
+        save(); progress();
+      });
+      b.dataset.v = Array.isArray(it) ? it[0] : it;
+      host.appendChild(b);
+    });
+  }
+  picker($("styles"), STYLES, "style", function(s){ return s; });
+  picker($("pals"), PALS, "palette", function(p){
+    return '<span class="swatch" style="background:'+p[1]+'"></span>'+p[0]; });
+
+  /* ---- plans ---- */
+  var plansHost = $("plans");
+  PLANS.forEach(function(p){
+    var b = document.createElement("button");
+    b.type="button"; b.className="plan"; b.dataset.v=p[0];
+    b.setAttribute("aria-pressed", String(p[0]===chosen.plan));
+    b.innerHTML = '<span class="pn">'+p[1]+'</span><span class="pp">&pound;'+p[2]+'</span><span class="pd">'+p[3]+'</span>';
+    b.addEventListener("click", function(){
+      chosen.plan = p[0];
+      plansHost.querySelectorAll(".plan").forEach(function(x){
+        x.setAttribute("aria-pressed", String(x.dataset.v === chosen.plan)); });
+      save();
+    });
+    plansHost.appendChild(b);
+  });
+
+  /* ---- preselect a plan from ?plan= on the landing page ---- */
+  var q = new URLSearchParams(location.search).get("plan");
+  if(q && PLANS.some(function(p){ return p[0]===q; })){
+    chosen.plan = q;
+    plansHost.querySelectorAll(".plan").forEach(function(x){
+      x.setAttribute("aria-pressed", String(x.dataset.v === chosen.plan)); });
+  }
+
+  /* ---- promo banner ---- */
+  if(C.PROMO && C.PROMO.SHOW){
+    var pr = $("promo"); pr.hidden = false;
+    pr.innerHTML = C.PROMO.TEXT + ' <code>' + C.PROMO.CODE + '</code> at checkout. Ends ' + C.PROMO.ENDS + '.';
+    $("payNowSub").textContent = "Enter " + C.PROMO.CODE + " at checkout for the launch discount";
+  }
+
+  /* ---- photos ---- */
+  var drop = $("drop"), input = $("files"), thumbs = $("thumbs");
+  drop.addEventListener("click", function(){ input.click(); });
+  drop.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); input.click(); } });
+  ["dragenter","dragover"].forEach(function(ev){
+    drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.add("over"); }); });
+  ["dragleave","drop"].forEach(function(ev){
+    drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.remove("over"); }); });
+  drop.addEventListener("drop", function(e){ addFiles(e.dataTransfer.files); });
+  input.addEventListener("change", function(){ addFiles(input.files); input.value=""; });
+
+  function addFiles(list){
+    Array.prototype.forEach.call(list, function(f){
+      if(photos.length >= 6) return;
+      if(!/^image\//.test(f.type)) return;
+      if(f.size > 10*1024*1024){ say("That photo is over 10MB, try another one.", "bad"); return; }
+      photos.push({ file:f, url:URL.createObjectURL(f) });
+    });
+    drawThumbs(); progress();
+  }
+  function drawThumbs(){
+    thumbs.innerHTML = "";
+    photos.forEach(function(p, i){
+      var d = document.createElement("div");
+      d.className = "thumb";
+      d.innerHTML = '<img src="'+p.url+'" alt=""><button type="button" aria-label="Remove photo">&times;</button>';
+      d.querySelector("button").addEventListener("click", function(){
+        URL.revokeObjectURL(p.url); photos.splice(i,1); drawThumbs(); progress(); });
+      thumbs.appendChild(d);
+    });
+    drop.querySelector("b").textContent = photos.length ? "Add another (" + photos.length + " of 6)" : "Tap to add photos";
+  }
+
+  /* ---- draft saving. Photos are not saved, they live in the tab. ---- */
+  var KEY = "lbf-draft-v1", savedFlag = $("saved"), t;
+  function fields(){
+    var o = {};
+    form.querySelectorAll("input[name],select[name],textarea[name]").forEach(function(el){ o[el.name] = el.value.trim(); });
+    o.services = Array.prototype.map.call(svcs.children, function(row){
+      return {
+        name:  row.querySelector('[data-svc="name"]').value.trim(),
+        desc:  row.querySelector('[data-svc="desc"]').value.trim(),
+        price: row.querySelector('[data-svc="price"]').value.trim()
+      };
+    }).filter(function(s){ return s.name || s.desc || s.price; });
+    return o;
+  }
+  function save(){
+    try{ localStorage.setItem(KEY, JSON.stringify({ f:fields(), c:chosen })); }catch(e){}
+    savedFlag.classList.add("on");
+    clearTimeout(t); t = setTimeout(function(){ savedFlag.classList.remove("on"); }, 1400);
+  }
+  function restore(){
+    var raw; try{ raw = localStorage.getItem(KEY); }catch(e){ return; }
+    if(!raw) return;
+    var d; try{ d = JSON.parse(raw); }catch(e){ return; }
+    Object.keys(d.f || {}).forEach(function(k){
+      if(k === "services") return;
+      var el = form.querySelector('[name="'+k+'"]'); if(el) el.value = d.f[k];
+    });
+    (d.f && d.f.services || []).forEach(function(s, i){
+      var row = svcs.children[i]; if(!row) return;
+      row.querySelector('[data-svc="name"]').value  = s.name || "";
+      row.querySelector('[data-svc="desc"]').value  = s.desc || "";
+      row.querySelector('[data-svc="price"]').value = s.price || "";
+    });
+    if(d.c){
+      chosen = Object.assign(chosen, d.c);
+      document.querySelectorAll("#styles .pick, #pals .pick").forEach(function(x){
+        x.setAttribute("aria-pressed", String(x.dataset.v === chosen.style || x.dataset.v === chosen.palette)); });
+      plansHost.querySelectorAll(".plan").forEach(function(x){
+        x.setAttribute("aria-pressed", String(x.dataset.v === chosen.plan)); });
+    }
+  }
+  form.addEventListener("input", function(){ save(); progress(); });
+
+  /* ---- progress bar, purely so it does not feel endless ---- */
+  function progress(){
+    var f = fields();
+    var done = [
+      !!f.business_name,
+      (f.services||[]).length > 0,
+      !!f.email,
+      !!(f.domain_wanted || f.domain_existing),
+      photos.length > 0 || !!chosen.style
+    ];
+    $("prog").querySelectorAll("i").forEach(function(bar, i){ bar.classList.toggle("on", done[i]); });
+  }
+
+  /* ---- validation ---- */
+  function validate(){
+    var ok = true, first = null;
+    form.querySelectorAll("[required]").forEach(function(el){
+      var bad = !el.value.trim() || (el.type === "email" && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value));
+      el.classList.toggle("err", bad);
+      var m = el.parentElement.querySelector(".errmsg");
+      if(m) m.classList.toggle("on", bad);
+      if(bad && !first) first = el;
+      if(bad) ok = false;
+    });
+    var dw = form.querySelector('[name="domain_wanted"]'), de = form.querySelector('[name="domain_existing"]');
+    if(!dw.value.trim() && !de.value.trim()){
+      dw.classList.add("err");
+      var m2 = dw.parentElement.querySelector(".errmsg");
+      m2.textContent = "Tell me what you would like, even roughly. I will check what is free.";
+      m2.classList.add("on");
+      if(!first) first = dw;
+      ok = false;
+    } else { dw.classList.remove("err"); dw.parentElement.querySelector(".errmsg").classList.remove("on"); }
+    if(first){ first.scrollIntoView({behavior:"smooth", block:"center"}); first.focus({preventScroll:true}); }
+    return ok;
+  }
+
+  function say(msg, kind){
+    statusEl.textContent = msg;
+    statusEl.className = "status" + (kind ? " " + kind : "");
+  }
+
+  /* ---- upload photos, then insert the lead ---- */
+  async function uploadPhotos(ref){
+    var paths = [];
+    for(var i=0;i<photos.length;i++){
+      var f = photos[i].file;
+      var ext = (f.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g,"");
+      var path = ref + "/" + (i+1) + "." + ext;
+      say("Sending photo " + (i+1) + " of " + photos.length + "...");
+      var r = await db.storage.from(C.BUCKET).upload(path, f, { upsert:true, contentType:f.type });
+      if(r.error) throw new Error("Photo " + (i+1) + " would not upload. " + r.error.message);
+      paths.push(path);
+    }
+    return paths;
+  }
+
+  async function submit(route){
+    if(busy) return;
+    if(!validate()){ say("Just a couple of bits missing, see above.", "bad"); return; }
+    busy = true;
+    document.querySelectorAll(".routes .btn").forEach(function(b){ b.disabled = true; });
+    say("Saving your details...");
+
+    try{
+      var f = fields();
+      var ref = (f.business_name || "site").toLowerCase().replace(/[^a-z0-9]+/g,"-").slice(0,40)
+                + "-" + Date.now().toString(36);
+      var paths = await uploadPhotos(ref);
+
+      var row = {
+        business_name: f.business_name, trade: f.trade || null, one_liner: f.one_liner || null,
+        area: f.area || null, services: f.services || [],
+        contact_name: f.contact_name || null, phone: f.phone || null, email: f.email,
+        address: f.address || null, hours: f.hours || null,
+        domain_wanted: f.domain_wanted || null, domain_existing: f.domain_existing || null,
+        style: chosen.style, palette: chosen.palette,
+        photo_paths: paths, notes: f.notes || null,
+        plan: chosen.plan, route: route,
+        promo_code: (C.PROMO && C.PROMO.SHOW) ? C.PROMO.CODE : null
+      };
+
+      var res = await db.from("leads").insert(row).select("id").single();
+      if(res.error) throw new Error(res.error.message);
+      var leadId = res.data.id;
+
+      try{ localStorage.removeItem(KEY); }catch(e){}
+
+      if(route === "pay_now"){
+        say("Right, off to checkout.", "ok");
+        var url = C.STRIPE[chosen.plan]
+          + (C.STRIPE[chosen.plan].indexOf("?") > -1 ? "&" : "?")
+          + "client_reference_id=" + encodeURIComponent(leadId)
+          + "&prefilled_email=" + encodeURIComponent(f.email);
+        location.href = url;
+      } else {
+        location.href = "/thanks.html?route=preview&ref=" + encodeURIComponent(leadId.slice(0,8));
+      }
+    } catch(err){
+      console.error(err);
+      say("That did not go through: " + err.message + ". Your answers are still saved, so try again in a moment, or email hello@livebyfriday.co.uk and I will sort it.", "bad");
+      busy = false;
+      document.querySelectorAll(".routes .btn").forEach(function(b){ b.disabled = false; });
+    }
+  }
+
+  $("payNow").addEventListener("click", function(){ submit("pay_now"); });
+  $("previewFirst").addEventListener("click", function(){ submit("preview_first"); });
+
+  restore(); drawThumbs(); progress();
+})();
+</script>
+</body>
+</html>

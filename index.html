@@ -1,0 +1,911 @@
+<title>Live by Friday</title>
+<link rel="icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Fraunces:opsz,wght@9..144,400..700&family=Nunito:wght@400..900&family=Public+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#FCFBF8;--paper-2:#F3F1EA;--ink:#15171C;--ink-2:#565C66;
+  --rule:#E0DDD3;--rule-hard:#15171C;--hi:#F6B900;--hi-ink:#15171C;
+  --band:#15171C;--band-ink:#FBFAF6;--band-ink-2:#A0A6AF;--band-rule:#33373F;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#121317;--paper-2:#191B20;--ink:#F1EFE8;--ink-2:#979DA6;
+    --rule:#2B2E35;--rule-hard:#4A4F58;--hi:#F6B900;--hi-ink:#15171C;
+    --band:#1E2127;--band-ink:#F1EFE8;--band-ink-2:#9AA0A9;--band-rule:#343841;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121317;--paper-2:#191B20;--ink:#F1EFE8;--ink-2:#979DA6;
+  --rule:#2B2E35;--rule-hard:#4A4F58;--hi:#F6B900;--hi-ink:#15171C;
+  --band:#1E2127;--band-ink:#F1EFE8;--band-ink-2:#9AA0A9;--band-rule:#343841;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+.narrow{max-width:660px}
+
+h1,h2,h3{font-family:"Archivo","Public Sans",Helvetica,Arial,sans-serif;font-variation-settings:"wdth" 108;font-weight:800;letter-spacing:-0.022em;line-height:1.02;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.6rem,7.2vw,5.1rem)}
+h2{font-size:clamp(1.9rem,4vw,2.9rem)}
+h3{font-size:1.18rem;font-variation-settings:"wdth" 100;font-weight:700;letter-spacing:-0.01em;line-height:1.2}
+p{margin:0}
+.label{font-family:"DM Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+.num{font-variant-numeric:tabular-nums}
+
+.masthead{border-bottom:2px solid var(--rule-hard);background:var(--paper);position:sticky;top:0;z-index:40}
+.masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:64px}
+.mark{display:flex;align-items:center;text-decoration:none}
+.mark img{width:150px;height:auto;display:block}
+@media (max-width:520px){.mark img{width:112px}}
+.mark .bolt{display:inline-grid;place-items:center;width:26px;height:26px;background:var(--hi);color:var(--hi-ink);font-size:.9rem;transform:translateY(4px)}
+.mast-right{display:flex;align-items:center;gap:22px}
+.mast-price{font-family:"DM Mono",monospace;font-size:.78rem;letter-spacing:.08em;color:var(--ink-2)}
+@media (max-width:640px){.mast-price{display:none}}
+
+.btn{display:inline-block;font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 105;font-weight:700;font-size:.95rem;letter-spacing:-0.005em;padding:13px 22px;border:2px solid var(--rule-hard);background:var(--hi);color:var(--hi-ink);text-decoration:none;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease;box-shadow:4px 4px 0 var(--rule-hard)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--rule-hard)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--rule-hard)}
+.btn.sm{padding:9px 16px;font-size:.85rem;box-shadow:3px 3px 0 var(--rule-hard)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--hi);outline-offset:3px}
+
+.hero{padding:78px 0 0}
+.hero .kicker{margin-bottom:22px}
+.hero h1{margin-bottom:26px}
+.hero h1 em{font-style:normal;background:var(--hi);color:var(--hi-ink);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hero .lede{font-size:clamp(1.06rem,1.9vw,1.3rem);color:var(--ink-2);max-width:38ch;margin-bottom:30px}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+
+.ticker{margin-top:64px;border-top:2px solid var(--rule-hard);border-bottom:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,1fr)}
+.ticker div{padding:18px 0 20px;border-right:1px solid var(--rule)}
+.ticker div:last-child{border-right:0}
+.ticker .big{font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 112;font-weight:800;font-size:1.5rem;letter-spacing:-0.02em;line-height:1.1}
+.ticker .cap{font-size:.82rem;color:var(--ink-2);margin-top:4px}
+@media (max-width:720px){
+  .ticker{grid-template-columns:repeat(2,1fr)}
+  .ticker div{padding-left:0;border-bottom:1px solid var(--rule)}
+  .ticker div:nth-child(2n){border-right:0;padding-left:18px}
+  .ticker div:nth-child(n+3){border-bottom:0}
+}
+
+.sec{padding:82px 0}
+.sec-head{margin-bottom:38px}
+.sec-head .label{margin-bottom:14px;display:block}
+.sec-head p{color:var(--ink-2);max-width:56ch;margin-top:16px}
+.band{background:var(--band);color:var(--band-ink)}
+.band .label{color:var(--band-ink-2)}
+.band .sec-head p{color:var(--band-ink-2)}
+
+.reasons{display:grid;border-top:1px solid var(--band-rule)}
+.reasons li{list-style:none;padding:20px 0;border-bottom:1px solid var(--band-rule);display:flex;gap:18px;align-items:baseline;font-size:1.06rem}
+.reasons li span{font-family:"DM Mono",monospace;font-size:.75rem;color:var(--hi);flex:0 0 auto;letter-spacing:.06em}
+.verdict{margin-top:34px;font-size:1.18rem;max-width:50ch;line-height:1.5}
+.verdict b{font-weight:700;background:var(--hi);color:var(--hi-ink);padding:0 .14em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+.incl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:2px solid var(--rule-hard)}
+.incl li{list-style:none;padding:22px 26px 22px 0;border-bottom:1px solid var(--rule);display:flex;gap:14px;align-items:flex-start}
+.incl li:nth-child(odd){border-right:1px solid var(--rule);padding-right:32px}
+.incl li:nth-child(even){padding-left:32px}
+.incl .tick{color:var(--ink);flex:0 0 auto;margin-top:3px}
+.incl .t{font-weight:600}
+.incl .d{color:var(--ink-2);font-size:.94rem;margin-top:2px}
+@media (max-width:760px){
+  .incl{grid-template-columns:1fr}
+  .incl li:nth-child(odd){border-right:0;padding-right:0}
+  .incl li:nth-child(even){padding-left:0}
+}
+
+.board{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--rule-hard)}
+.tier{padding:30px 26px 32px;border-right:2px solid var(--rule-hard);display:flex;flex-direction:column;position:relative}
+.tier:last-child{border-right:0}
+.tier.feature{background:var(--band);color:var(--band-ink)}
+.tier.feature .label{color:var(--hi)}
+.tier.feature .tier-list li{border-color:var(--band-rule)}
+.tier.feature .tier-list .d{color:var(--band-ink-2)}
+.tier.feature .btn{border-color:var(--hi);box-shadow:4px 4px 0 var(--hi)}
+.tier.feature .btn:hover{box-shadow:6px 6px 0 var(--hi)}
+.tier-name{margin-bottom:16px}
+.tier-price{font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 115;font-weight:800;font-size:3rem;letter-spacing:-0.035em;line-height:1;font-variant-numeric:tabular-nums}
+.tier-sub{font-size:.88rem;color:var(--ink-2);margin-top:8px}
+.tier.feature .tier-sub{color:var(--band-ink-2)}
+.tier-list{margin:24px 0 26px;padding:0;flex:1}
+.tier-list li{list-style:none;padding:11px 0;border-bottom:1px solid var(--rule);font-size:.95rem}
+.tier-list li:last-child{border-bottom:0}
+.tier-list .d{color:var(--ink-2);font-size:.86rem}
+.tier-list .plus{font-family:"DM Mono",monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);padding-top:16px;border-bottom:0}
+.tier.feature .tier-list .plus{color:var(--hi)}
+.flag{position:absolute;top:-2px;right:-2px;background:var(--hi);color:var(--hi-ink);font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 11px}
+@media (max-width:860px){
+  .board{grid-template-columns:1fr}
+  .tier{border-right:0;border-bottom:2px solid var(--rule-hard)}
+  .tier:last-child{border-bottom:0}
+}
+.after{border:2px solid var(--rule-hard);border-top:0;padding:20px 26px;display:flex;flex-wrap:wrap;gap:8px 24px;align-items:baseline;background:var(--paper-2)}
+.after b{font-weight:700}
+.after span{color:var(--ink-2);font-size:.94rem}
+.extras{margin-top:44px;border-top:2px solid var(--rule-hard)}
+.extras .row{display:flex;justify-content:space-between;gap:24px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.extras .row .n{font-size:.98rem}
+.extras .row .n i{font-style:normal;color:var(--ink-2);font-size:.88rem;display:block}
+.extras .row .p{font-family:"DM Mono",monospace;font-size:.95rem;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* ---------- the studio: business tabs, brief, overrides, preview ---------- */
+.bizzes{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--hi);margin-bottom:36px}
+.bz{text-align:left;background:none;border:0;border-right:1px solid var(--band-rule);padding:18px 20px 20px 0;cursor:pointer;color:var(--band-ink);font:inherit;transition:background .14s ease}
+.bz:not(:first-child){padding-left:20px}
+.bz:last-child{border-right:0}
+.bz:hover{background:rgba(246,185,0,.07)}
+.bz[aria-pressed="true"]{background:rgba(246,185,0,.13)}
+.bz-name{display:flex;align-items:center;gap:9px;font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 110;font-weight:800;font-size:1rem;letter-spacing:-0.018em;line-height:1.15}
+.bz-name svg{width:17px;height:17px;flex:0 0 auto;color:var(--hi)}
+.bz[aria-pressed="false"] .bz-name{color:var(--band-ink-2)}
+.bz[aria-pressed="false"] .bz-name svg{color:var(--band-ink-2);opacity:.6}
+.bz-for{font-size:.78rem;color:var(--band-ink-2);line-height:1.4;margin-top:7px}
+@media (max-width:900px){
+  .bizzes{grid-template-columns:repeat(2,1fr)}
+  .bz{border-bottom:1px solid var(--band-rule);padding:16px 16px 18px 0}
+  .bz:nth-child(2n){border-right:0;padding-left:20px}
+}
+@media (max-width:520px){
+  .bizzes{grid-template-columns:1fr}
+  .bz{border-right:0;padding:14px 0 16px}
+  .bz:nth-child(2n){padding-left:0}
+  .bz:last-child{border-bottom:0}
+}
+
+.studio{display:grid;grid-template-columns:320px 1fr;gap:40px;align-items:start}
+@media (max-width:940px){.studio{grid-template-columns:1fr;gap:30px}}
+
+.brief{border-left:3px solid var(--hi);padding:2px 0 2px 18px;font-family:"DM Mono",monospace;font-size:.78rem;line-height:1.55}
+.brief .bl{display:block;color:var(--band-ink-2);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.brief .bv{display:block;color:var(--band-ink);margin-bottom:15px}
+.brief .bv:last-child{margin-bottom:0}
+.brief .bv em{font-style:normal;color:var(--hi)}
+.brief-why{margin-top:20px;font-family:"Public Sans",sans-serif;font-size:.88rem;color:var(--band-ink-2);line-height:1.55;border-top:1px solid var(--band-rule);padding-top:16px}
+
+.overrides{margin-top:30px;border-top:1px solid var(--band-rule);padding-top:20px}
+.ov-label{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:11px}
+.ov-reset{background:none;border:0;padding:0;cursor:pointer;font-family:"DM Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--hi);opacity:0;pointer-events:none;transition:opacity .18s ease}
+.ov-reset.on{opacity:1;pointer-events:auto}
+.ov-reset:hover{text-decoration:underline}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+.chip{font-family:"Public Sans",sans-serif;font-size:.8rem;font-weight:600;padding:6px 12px;background:none;color:var(--band-ink-2);border:1px solid var(--band-rule);cursor:pointer;transition:all .14s ease}
+.chip:hover{border-color:var(--band-ink-2);color:var(--band-ink)}
+.chip[aria-pressed="true"]{background:var(--hi);border-color:var(--hi);color:var(--hi-ink)}
+.dots{display:flex;flex-wrap:wrap;gap:9px}
+.dot-btn{width:38px;height:38px;padding:0;border:1px solid var(--band-rule);cursor:pointer;position:relative;display:grid;grid-template-rows:1fr 1fr;overflow:hidden;transition:transform .14s ease,border-color .14s ease}
+.dot-btn i{display:block}
+.dot-btn:hover{transform:translateY(-2px);border-color:var(--band-ink-2)}
+.dot-btn[aria-pressed="true"]{border-color:var(--hi);box-shadow:0 0 0 2px var(--hi)}
+.ov-mini{display:block;font-family:"DM Mono",monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--band-ink-2);margin-bottom:9px}
+.roll{margin-top:20px;display:inline-block}
+.ov-note{margin-top:18px;font-size:.82rem;color:var(--band-ink-2);line-height:1.55}
+
+.frame{border:2px solid var(--hi);background:var(--band);overflow:hidden}
+.frame-bar{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:2px solid var(--hi)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--band-ink-2);opacity:.45;flex:0 0 auto}
+.frame-url{flex:1;margin-left:6px;font-family:"DM Mono",monospace;font-size:.72rem;color:var(--band-ink-2);background:rgba(255,255,255,.05);border:1px solid var(--band-rule);padding:4px 9px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.frame-cap{display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:space-between;align-items:baseline;margin-top:14px;font-size:.82rem;color:var(--band-ink-2)}
+.frame-cap code{font-family:"DM Mono",monospace;font-size:.78rem;color:var(--hi)}
+
+/* ---------- preview -----------------------------------------------
+   Six independent axes. Palette sets colour. Type sets lettering.
+   Layout sets the hero composition. Device sets the edge language.
+   Density sets the air. Accent sets where the colour is spent.
+   The AI composes them. It never writes CSS.
+-------------------------------------------------------------------*/
+.preview{
+  --p-bg:#F4F6F8;--p-ink:#1E2733;--p-accent:#33628F;--p-soft:#DCE4EC;--p-muted:#5A6674;
+  --t-display:"Archivo",sans-serif;--t-body:"Public Sans",sans-serif;
+  --t-wdth:118;--t-weight:800;--t-track:-0.028em;--t-case:none;--t-lh:1.04;
+  --t-radius:0px;--t-pill:2px;--t-rule:1px;--b-col:var(--p-soft);
+  --d-y:34px;--d-x:24px;--d-gap:22px;--sh:none;
+  background:var(--p-bg);color:var(--p-ink);font-family:var(--t-body);font-size:15px;
+  transition:background-color .4s ease,color .4s ease;
+}
+.preview *{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+
+/* density */
+.den-tight{--d-y:22px;--d-x:20px;--d-gap:14px}
+.den-normal{--d-y:34px;--d-x:24px;--d-gap:22px}
+.den-generous{--d-y:50px;--d-x:34px;--d-gap:30px}
+
+/* device: the edge language */
+.dev-rules{--t-rule:1px;--t-radius:0px;--t-pill:2px;--b-col:var(--p-soft);--sh:none}
+.dev-slab{--t-rule:3px;--t-radius:0px;--t-pill:0px;--b-col:var(--p-ink);--sh:none}
+.dev-offset{--t-rule:2px;--t-radius:3px;--t-pill:3px;--b-col:var(--p-ink);--sh:7px 7px 0 var(--p-accent)}
+.dev-cards{--t-rule:0px;--t-radius:16px;--t-pill:999px;--b-col:transparent;--sh:none}
+.dev-bands{--t-rule:1px;--t-radius:2px;--t-pill:2px;--b-col:var(--p-soft);--sh:none}
+
+/* accent bar, only when the brief spends colour that way */
+.p-accentbar{display:none;height:7px;background:var(--p-accent)}
+.acc-band .p-accentbar{display:block}
+
+.p-callbar{background:var(--p-accent);color:#fff;text-align:center;padding:9px 16px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+
+.p-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:calc(var(--d-y) * .45) var(--d-x);border-bottom:var(--t-rule) solid var(--b-col)}
+.p-brand{display:flex;align-items:center;gap:9px;min-width:0}
+.p-brand svg{width:20px;height:20px;flex:0 0 auto;color:var(--p-accent)}
+.p-logo{font-family:var(--t-display);font-variation-settings:"wdth" var(--t-wdth);font-weight:var(--t-weight);font-size:.95rem;letter-spacing:var(--t-track);text-transform:var(--t-case);line-height:1.15}
+.p-navlinks{display:flex;gap:16px;font-size:.72rem;color:var(--p-muted)}
+@media (max-width:620px){.p-navlinks{display:none}}
+.p-call{background:var(--p-accent);color:#fff;font-size:.7rem;font-weight:700;padding:6px 12px;border-radius:var(--t-pill);white-space:nowrap}
+
+.p-hero{padding:var(--d-y) var(--d-x);display:grid;grid-template-columns:1.15fr .85fr;gap:var(--d-gap);align-items:center}
+.p-eyebrow{font-family:"DM Mono",monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--p-accent);margin-bottom:10px}
+.acc-mark .p-eyebrow{display:inline-block;background:var(--p-accent);color:#fff;padding:4px 9px;border-radius:var(--t-pill)}
+.p-hero h4{font-family:var(--t-display);font-variation-settings:"wdth" var(--t-wdth);font-weight:var(--t-weight);font-size:clamp(1.5rem,3.5vw,2.15rem);line-height:var(--t-lh);letter-spacing:var(--t-track);text-transform:var(--t-case);margin:0 0 12px;text-wrap:balance}
+.p-hero p{font-size:.86rem;color:var(--p-muted);line-height:1.55;margin:0 0 18px;max-width:36ch}
+.p-cta{display:inline-block;background:var(--p-accent);color:#fff;font-size:.78rem;font-weight:700;padding:10px 18px;border-radius:var(--t-pill)}
+.dev-offset .p-cta{box-shadow:3px 3px 0 var(--p-ink)}
+.p-photo{aspect-ratio:4/3;background:var(--p-soft);border:var(--t-rule) solid var(--b-col);border-radius:var(--t-radius);display:grid;place-items:center;box-shadow:var(--sh)}
+.acc-rules .p-photo{border-color:var(--p-accent)}
+.p-photo span{font-family:"DM Mono",monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--p-muted)}
+@media (max-width:640px){.p-hero{grid-template-columns:1fr}}
+
+/* layout: the hero composition */
+.lay-splitleft .p-hero .p-photo{order:-1}
+.lay-stack .p-hero{grid-template-columns:1fr;gap:calc(var(--d-gap) * .9)}
+.lay-stack .p-hero .p-photo{aspect-ratio:21/7}
+.lay-poster .p-hero{grid-template-columns:1fr;text-align:center;justify-items:center;padding-bottom:calc(var(--d-y) * .7)}
+.lay-poster .p-hero .p-photo{display:none}
+.lay-poster .p-hero p{max-width:48ch}
+.lay-poster .p-hero-copy{max-width:46ch}
+.lay-poster .p-foot{justify-content:center}
+.lay-poster .p-svc{text-align:center}
+.lay-poster .p-proof{justify-content:center;text-align:center}
+.lay-overlay .p-hero{grid-template-columns:1fr;padding:0;gap:0}
+.lay-overlay .p-hero-copy{grid-area:1/1;z-index:2;padding:calc(var(--d-y) * 1.3) var(--d-x);align-self:end}
+.lay-overlay .p-hero .p-photo{grid-area:1/1;aspect-ratio:16/9;width:100%;border:0;border-radius:0;box-shadow:none;align-items:start;padding-top:14px}
+.lay-overlay .p-hero p{max-width:40ch}
+
+.p-gallery{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:calc(var(--d-gap) * .45);padding:0 var(--d-x) var(--d-y)}
+.p-gallery .p-photo{aspect-ratio:3/4}
+.p-gallery .p-photo:first-child{aspect-ratio:1/1}
+.dev-offset .p-gallery .p-photo:nth-child(2){transform:rotate(1.6deg)}
+@media (max-width:640px){.p-gallery{grid-template-columns:repeat(2,1fr)}}
+
+.p-svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--t-rule);background:var(--b-col);border-top:var(--t-rule) solid var(--b-col);border-bottom:var(--t-rule) solid var(--b-col)}
+.p-svc{background:var(--p-bg);padding:calc(var(--d-y) * .55) calc(var(--d-x) * .8)}
+.p-svc b{font-family:var(--t-display);font-variation-settings:"wdth" var(--t-wdth);font-weight:var(--t-weight);font-size:.86rem;letter-spacing:var(--t-track);text-transform:var(--t-case);display:block;margin-bottom:5px}
+.p-svc i{font-style:normal;font-size:.76rem;color:var(--p-muted);line-height:1.45;display:block}
+.p-svc u{text-decoration:none;font-family:"DM Mono",monospace;font-size:.72rem;color:var(--p-accent);display:block;margin-top:7px;font-variant-numeric:tabular-nums}
+.dev-slab .p-svcs{gap:3px;background:var(--p-ink);border-color:var(--p-ink)}
+.dev-cards .p-svcs{background:transparent;border:0;gap:var(--d-gap);padding:calc(var(--d-y) * .7) var(--d-x)}
+.dev-cards .p-svc{background:var(--p-soft);border-radius:var(--t-radius)}
+.dev-offset .p-svcs{background:transparent;border:0;gap:0;padding:0 var(--d-x) var(--d-y)}
+.dev-offset .p-svc{border:2px solid var(--p-ink);border-radius:var(--t-radius);margin-right:-2px}
+.dev-bands .p-svcs{background:var(--p-soft);border:0;gap:1px}
+@media (max-width:640px){.p-svcs{grid-template-columns:1fr}}
+
+.p-cover{padding:calc(var(--d-y) * .65) var(--d-x);border-bottom:var(--t-rule) solid var(--b-col)}
+.dev-bands .p-cover{background:var(--p-soft)}
+.p-cover .ct{font-family:"DM Mono",monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--p-muted);margin-bottom:11px}
+.p-cover .cs{display:flex;flex-wrap:wrap;gap:7px}
+.p-cover .cs span{font-size:.76rem;font-weight:600;padding:5px 11px;border:max(1px,var(--t-rule)) solid var(--p-accent);color:var(--p-ink);border-radius:var(--t-pill)}
+.dev-cards .p-cover .cs span{background:var(--p-soft);border-color:transparent}
+
+.p-proof{padding:calc(var(--d-y) * .75) var(--d-x);border-bottom:var(--t-rule) solid var(--b-col);display:flex;gap:16px;align-items:flex-start}
+.dev-bands .p-proof{background:var(--p-soft);border:0}
+.p-proof .q{font-family:var(--t-display);font-variation-settings:"wdth" var(--t-wdth);font-weight:var(--t-weight);font-size:1.6rem;line-height:.9;color:var(--p-accent);flex:0 0 auto}
+.p-proof blockquote{margin:0;font-size:.9rem;line-height:1.55;max-width:48ch}
+.p-proof cite{display:block;font-style:normal;font-size:.74rem;color:var(--p-muted);margin-top:8px}
+
+.p-foot{display:flex;flex-wrap:wrap;gap:10px 30px;padding:calc(var(--d-y) * .5) var(--d-x);font-size:.76rem;color:var(--p-muted)}
+.p-foot b{color:var(--p-ink);font-weight:600}
+.p-strip{height:5px;background:var(--p-accent)}
+.dev-slab .p-strip{height:10px}
+.acc-minimal .p-strip{background:var(--p-soft)}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--rule-hard)}
+.step{padding:26px 30px 30px 0;border-right:1px solid var(--rule)}
+.step:last-child{border-right:0}
+.step:not(:first-child){padding-left:30px}
+.step .n{font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 118;font-weight:800;font-size:2.4rem;line-height:1;letter-spacing:-0.04em;color:var(--hi);-webkit-text-stroke:1px var(--rule-hard);margin-bottom:14px}
+.step h3{margin-bottom:8px}
+.step p{color:var(--ink-2);font-size:.95rem}
+@media (max-width:800px){
+  .steps{grid-template-columns:1fr}
+  .step{border-right:0;border-bottom:1px solid var(--rule);padding:24px 0 26px}
+  .step:not(:first-child){padding-left:0}
+  .step:last-child{border-bottom:0}
+}
+
+.faq{border-top:2px solid var(--rule-hard)}
+.faq details{border-bottom:1px solid var(--rule)}
+.faq summary{cursor:pointer;list-style:none;padding:20px 40px 20px 0;position:relative;font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 104;font-weight:700;font-size:1.06rem;letter-spacing:-0.012em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:18px;font-family:"DM Mono",monospace;font-size:1.2rem;color:var(--ink-2)}
+.faq details[open] summary::after{content:"\2212"}
+.faq .a{padding:0 0 22px;color:var(--ink-2);max-width:62ch}
+.faq .a b{color:var(--ink);font-weight:600}
+
+.closer{padding:76px 0 84px}
+.closer h2{margin-bottom:18px;max-width:20ch}
+.closer p{color:var(--band-ink-2);max-width:46ch;margin-bottom:30px;font-size:1.06rem}
+.foot{border-top:1px solid var(--band-rule);padding:22px 0 40px;display:flex;flex-wrap:wrap;gap:10px 26px;justify-content:space-between}
+.foot small{color:var(--band-ink-2);font-size:.82rem}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="mark" href="/"><img src="/logo.png" alt="Live by Friday" width="150"></a>
+    <div class="mast-right">
+      <span class="mast-price num">&pound;99 first year</span>
+      <a class="btn sm" href="/start.html">Start yours</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="label kicker">One page &middot; Your own .co.uk &middot; Live in a week</span>
+    <h1>A proper website for your business. <em>Live by Friday.</em></h1>
+    <p class="lede">Ninety nine quid for the first year. Your photos, your phone number, your own web address. And you never have to open a website builder.</p>
+    <div class="hero-actions">
+      <a class="btn" href="/start.html">Start yours</a>
+      <a class="btn ghost" href="#looks">See it work</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="ticker">
+      <div><div class="big num">&pound;99</div><div class="cap">First year, everything in</div></div>
+      <div><div class="big">5 days</div><div class="cap">From form to live, usually less</div></div>
+      <div><div class="big">15 mins</div><div class="cap">That is all you have to do</div></div>
+      <div><div class="big">Yours</div><div class="cap">Domain in your name, not mine</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec band">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">Section one</span>
+      <h2>The reason you still haven't got one</h2>
+    </div>
+    <ul class="reasons">
+      <li><span>01</span> You opened Wix, gave it forty minutes, and closed the laptop.</li>
+      <li><span>02</span> Someone quoted you two grand and wanted to book a discovery workshop.</li>
+      <li><span>03</span> Your mate's cousin said he'd sort it. That was in March.</li>
+      <li><span>04</span> You've got a Facebook page and you already know that isn't the same thing.</li>
+      <li><span>05</span> Every quote you got had the word "bespoke" in it and no number.</li>
+    </ul>
+    <p class="verdict">None of that is a you problem. A simple website should take a week and cost less than a set of tyres. <b>So that is what this is.</b></p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">What ninety nine quid buys</span>
+      <h2>Everything you actually need, nothing you don't</h2>
+      <p>One page, done properly, that loads fast on a phone and tells people who you are, what you do, where you are and how to reach you. That is what wins you the job. Not a carousel.</p>
+    </div>
+    <ul class="incl">
+      <li><span class="tick">&#10003;</span><div><div class="t">Your own .co.uk address</div><div class="d">Registered in your name with your details, not mine. It is yours to take anywhere.</div></div></li>
+      <li><span class="tick">&#10003;</span><div><div class="t">A page built round your trade</div><div class="d">A plumber and a florist need different things on the page. You get the one that suits you.</div></div></li>
+      <li><span class="tick">&#10003;</span><div><div class="t">Up to six of your photos</div><div class="d">Send them off your phone. Sideways ones are fine, I will sort them out.</div></div></li>
+      <li><span class="tick">&#10003;</span><div><div class="t">Tap to call and a contact form</div><div class="d">Enquiries land in the email address you already use. No new inbox to check.</div></div></li>
+      <li><span class="tick">&#10003;</span><div><div class="t">Hosted and secure for 12 months</div><div class="d">Padlock in the address bar, fast on 4G, nothing for you to renew or configure.</div></div></li>
+      <li><span class="tick">&#10003;</span><div><div class="t">Found on Google and on maps</div><div class="d">Set up so your name, area and phone number are readable by search engines from day one.</div></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec band" id="looks">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">Have a go</span>
+      <h2>It designs the thing round your business, not the other way round.</h2>
+      <p>A plumber and a wedding florist should not end up with the same website in different colours. So the lettering, the layout, the edges, the spacing and the colour are all decided from what you tell me about the business. Here are four of them. Click between them, and hit <b>design it again</b> to watch one get redesigned from scratch.</p>
+    </div>
+
+    <div class="bizzes" id="bizzes" role="group" aria-label="Choose an example business"></div>
+
+    <div class="studio">
+      <div>
+        <div class="brief" id="brief"></div>
+
+        <div class="overrides">
+          <div class="ov-label">
+            <span class="label">Or overrule it</span>
+            <button class="ov-reset" id="reset" type="button">Reset</button>
+          </div>
+          <span class="ov-mini">Shortcuts</span><div class="chips" id="chips" role="group" aria-label="Choose a style"></div><span class="ov-mini">Colour</span>
+          <div class="dots" id="dots" role="group" aria-label="Choose a colour"></div>
+          <button class="btn sm roll" id="roll" type="button">Design it again</button>
+          <p class="ov-note">Over ten thousand designs are possible from these parts, and every one of the parts was drawn and tested by hand. The system composes one for you. You get the final say, and changing your mind afterwards is free.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="frame">
+          <div class="frame-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="frame-url" id="frameUrl">marshlanedoggrooming.co.uk</span>
+          </div>
+          <div class="preview" id="preview"></div>
+        </div>
+        <div class="frame-cap">
+          <span id="capLeft">Friendly in Forest</span>
+          <code id="capRight">Nunito / Nunito</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="packages">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">Prices, in public, like a proper shop</span>
+      <h2>Three options. Pick one and we're off.</h2>
+      <p>No quotes, no calls, no "it depends". If what you want isn't on this board, ask me and I will give you a number the same day.</p>
+    </div>
+
+    <div class="board">
+      <div class="tier">
+        <div class="tier-name"><span class="label">Just the site</span></div>
+        <div class="tier-price">&pound;99</div>
+        <div class="tier-sub">First 12 months, all in</div>
+        <ul class="tier-list">
+          <li>.co.uk address in your name</li>
+          <li>One page, up to 6 photos</li>
+          <li>Built round your trade</li>
+          <li>Contact form and tap to call</li>
+          <li>Email forwarding to your inbox</li>
+          <li>Hosted and live for 12 months</li>
+        </ul>
+        <a class="btn ghost" href="/start.html?plan=site">Start yours</a>
+      </div>
+
+      <div class="tier feature">
+        <span class="flag">Most people pick this</span>
+        <div class="tier-name"><span class="label">Sorted</span></div>
+        <div class="tier-price">&pound;199</div>
+        <div class="tier-sub">The blank page problem, solved</div>
+        <ul class="tier-list">
+          <li class="plus">Everything above, plus</li>
+          <li>I write the words for you<div class="d">You talk, I type. This is the bit people get stuck on.</div></li>
+          <li>Up to 12 photos</li>
+          <li>Google Business Profile set up and verified</li>
+          <li>Live within 48 hours</li>
+        </ul>
+        <a class="btn" href="/start.html">Start yours</a>
+      </div>
+
+      <div class="tier">
+        <div class="tier-name"><span class="label">The lot</span></div>
+        <div class="tier-price">&pound;349</div>
+        <div class="tier-sub">Two years, both addresses</div>
+        <ul class="tier-list">
+          <li class="plus">Everything above, plus</li>
+          <li>.co.uk and .com, both yours<div class="d">One points at the other so nobody can pinch your name.</div></li>
+          <li>A second page</li>
+          <li>A simple logo if you haven't got one</li>
+          <li>24 months instead of 12</li>
+        </ul>
+        <a class="btn ghost" href="/start.html">Start yours</a>
+      </div>
+    </div>
+
+    <div class="after">
+      <b class="num">Then &pound;49 a year.</b>
+      <span>Covers your domain, your hosting, and small changes like a new number, new prices or new opening hours. Cancel any time and the address stays yours.</span>
+    </div>
+
+    <div class="extras">
+      <div class="row"><div class="n">Extra page<i>About, gallery, a second service</i></div><div class="p num">&pound;49</div></div>
+      <div class="row"><div class="n">.com instead of .co.uk<i>Or as well as, for &pound;40</i></div><div class="p num">&pound;25</div></div>
+      <div class="row"><div class="n">Live in 24 hours<i>If you need it for Monday</i></div><div class="p num">&pound;39</div></div>
+      <div class="row"><div class="n">Extra year paid up front<i>Same as the renewal, no catch</i></div><div class="p num">&pound;49</div></div>
+      <div class="row"><div class="n">You already own a domain<i>We will just point it at your new site</i></div><div class="p num">&minus;&pound;15</div></div>
+      <div class="row"><div class="n">A real mailbox on your domain<i>Most people do not need one. Ask and I will price it honestly.</i></div><div class="p">Ask</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">How it goes</span>
+      <h2>Fifteen minutes of your time, start to finish</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n num">1</div>
+        <h3>Tell me about the business</h3>
+        <p>Your name, what you do, where you cover, your hours and your number. Drop your photos in off your phone. Fifteen minutes, and you can stop halfway and come back to it.</p>
+      </div>
+      <div class="step">
+        <div class="n num">2</div>
+        <h3>I build it round your trade</h3>
+        <p>Usually the next day. A plumber gets the phone number and the areas covered up top. A florist gets the photographs. You get a link to your actual finished site, not a mock up.</p>
+      </div>
+      <div class="step">
+        <div class="n num">3</div>
+        <h3>Say yes, or tell me what's wrong</h3>
+        <p>One round of changes is included and I am not precious about it. Then it goes live on your own address, usually within the hour.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap narrow" style="margin-left:0">
+    <div class="sec-head">
+      <span class="label">Straight answers</span>
+      <h2>The questions everybody asks</h2>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>Who actually owns the domain?</summary>
+        <div class="a">You do. It goes in <b>your name, with your details</b>, and I will give you the login. If you ever want to move it somewhere else, or hand it to someone cheaper than me, you can, and I will help you do it. Holding people's domains hostage is how web people get a bad name.</div>
+      </details>
+      <details>
+        <summary>What happens after the first year?</summary>
+        <div class="a">It goes to <b>&pound;49 a year</b>, which covers renewing your domain, keeping the site online, and small changes through the year like a new phone number, new prices or new opening hours. Cancel whenever you like. You keep the address either way.</div>
+      </details>
+      <details>
+        <summary>Is this just a template with my name dropped in?</summary>
+        <div class="a">No, and you can prove it yourself further up this page. What goes on the page, what order it goes in, and what it looks like all come out of <b>what you tell me about the business</b>. A roofer and a wedding florist need genuinely different pages, so they get them. What is the same underneath is the engineering, which is why it costs ninety nine quid instead of two grand.</div>
+      </details>
+      <details>
+        <summary>Who writes the words?</summary>
+        <div class="a">On the &pound;199 one, I do, from what you tell me. And here is the important bit: <b>nothing goes on your site that you did not tell me</b>. No invented years of experience, no qualifications you haven't got, no awards. You read it before it goes live and I would rather sound plain than have you explaining a made up claim to a customer.</div>
+      </details>
+      <details>
+        <summary>What if I pick a look and then go off it?</summary>
+        <div class="a">Tell me and I will switch it. Changing the style or the colour is <b>about a minute of work</b>, because the site is built to do exactly that. I am not going to charge you or sigh down the phone.</div>
+      </details>
+      <details>
+        <summary>Do I get an email address like hello@mybusiness.co.uk?</summary>
+        <div class="a">You get <b>forwarding, included</b>, so anything sent to hello@yourname.co.uk drops straight into the inbox you already use. It works perfectly and it costs nothing. A proper mailbox you can send from is about &pound;70 a year on top, and most sole traders genuinely do not need one. Ask me and I will tell you honestly whether you do.</div>
+      </details>
+      <details>
+        <summary>What don't you do?</summary>
+        <div class="a">Online shops, booking and payment systems, membership areas, anything with a login. Not because they are difficult, but because they are <b>not ninety nine quid</b> and I would rather say so now than halfway through. If that is what you need, tell me and I will point you at someone good.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="start">
+  <div class="wrap closer">
+    <span class="label" style="display:block;margin-bottom:16px">Right then</span>
+    <h2>Fill the form in tonight. Be live by Friday.</h2>
+    <p>Ninety nine quid, your own address, and one less thing you have been meaning to sort out since 2024.</p>
+    <a class="btn" href="/start.html">Start yours</a>
+  </div>
+  <div class="wrap">
+    <div class="foot">
+      <small>Live by Friday &middot; Websites for people with better things to do</small>
+      <small>Prices include VAT where applicable &middot; Domain registered in your name</small>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ------------------------------------------------------------------
+   SIX INDEPENDENT AXES. The AI composes them, it never writes CSS.
+
+   type     8 lettering pairings
+   layout   5 hero compositions
+   device   5 edge languages
+   density  3 amounts of air
+   accent   4 places to spend the colour
+   palette  6 colour sets
+
+   8 x 5 x 5 x 3 x 4 x 6 = 14,400 combinations, of which about
+   10,000 survive the compatibility rules below. Every one is made
+   of parts drawn and tested by hand. The brief composes one.
+-------------------------------------------------------------------*/
+
+const MOTIF = {
+  paw:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="6.4" cy="9.2" rx="2.3" ry="3"/><ellipse cx="12" cy="6.8" rx="2.4" ry="3.2"/><ellipse cx="17.6" cy="9.2" rx="2.3" ry="3"/><path d="M12 12.2c3 0 5.6 2.4 5.6 4.9 0 1.7-1.4 2.7-3.2 2.7-1 0-1.7-.4-2.4-.4s-1.4.4-2.4.4c-1.8 0-3.2-1-3.2-2.7 0-2.5 2.6-4.9 5.6-4.9z"/></svg>',
+  leaf:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 20c0-8 5-14 16-16 1 10-4 15-11 15.5"/><path d="M4 20c4-5 8-8 12-9.5"/></svg>',
+  spanner:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 3.6a5.4 5.4 0 0 0-6.6 6.9L3 16.1 7.9 21l5.6-5.6a5.4 5.4 0 0 0 6.9-6.6L17.1 12l-3.1-.9-.9-3.1z"/></svg>',
+  flag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 21V3"/><path d="M7 4.2h11.5L15.4 8l3.1 3.8H7"/><path d="M3.5 21h7"/></svg>'
+};
+
+const TYPE = [
+  { id:"editorial", name:"Fraunces / Public Sans",
+    v:{"--t-display":'"Fraunces",Georgia,serif',"--t-body":'"Public Sans",sans-serif',"--t-wdth":100,"--t-weight":600,"--t-track":"-0.005em","--t-case":"none","--t-lh":"1.14"} },
+  { id:"bookish", name:"Fraunces Bold / Public Sans",
+    v:{"--t-display":'"Fraunces",Georgia,serif',"--t-body":'"Public Sans",sans-serif',"--t-wdth":100,"--t-weight":700,"--t-track":"-0.022em","--t-case":"none","--t-lh":"1.06"} },
+  { id:"expanded", name:"Archivo Expanded / Public Sans",
+    v:{"--t-display":'"Archivo",sans-serif',"--t-body":'"Public Sans",sans-serif',"--t-wdth":118,"--t-weight":800,"--t-track":"-0.028em","--t-case":"none","--t-lh":"1.04"} },
+  { id:"condensed", name:"Archivo Condensed Caps / Public Sans",
+    v:{"--t-display":'"Archivo",sans-serif',"--t-body":'"Public Sans",sans-serif',"--t-wdth":80,"--t-weight":900,"--t-track":"0.005em","--t-case":"uppercase","--t-lh":"1.0"} },
+  { id:"plain", name:"Archivo / Public Sans",
+    v:{"--t-display":'"Archivo",sans-serif',"--t-body":'"Public Sans",sans-serif',"--t-wdth":100,"--t-weight":700,"--t-track":"-0.018em","--t-case":"none","--t-lh":"1.08"} },
+  { id:"rounded", name:"Nunito / Nunito",
+    v:{"--t-display":'"Nunito",sans-serif',"--t-body":'"Nunito",sans-serif',"--t-wdth":100,"--t-weight":800,"--t-track":"-0.015em","--t-case":"none","--t-lh":"1.14"} },
+  { id:"wonky", name:"Bricolage Grotesque / Public Sans",
+    v:{"--t-display":'"Bricolage Grotesque",sans-serif',"--t-body":'"Public Sans",sans-serif',"--t-wdth":88,"--t-weight":800,"--t-track":"-0.02em","--t-case":"none","--t-lh":"1.02"} },
+  { id:"quiet", name:"Bricolage Light / Public Sans",
+    v:{"--t-display":'"Bricolage Grotesque",sans-serif',"--t-body":'"Public Sans",sans-serif',"--t-wdth":100,"--t-weight":500,"--t-track":"-0.014em","--t-case":"none","--t-lh":"1.1"} }
+];
+
+const LAYOUT = [
+  { id:"split",     cls:"lay-split",     name:"words left, picture right" },
+  { id:"splitleft", cls:"lay-splitleft", name:"picture left, words right" },
+  { id:"stack",     cls:"lay-stack",     name:"words, then a wide picture under" },
+  { id:"poster",    cls:"lay-poster",    name:"centred, like a poster" },
+  { id:"overlay",   cls:"lay-overlay",   name:"words over the picture" }
+];
+
+const DEVICE = [
+  { id:"rules",  cls:"dev-rules",  name:"hairline rules" },
+  { id:"slab",   cls:"dev-slab",   name:"heavy borders" },
+  { id:"offset", cls:"dev-offset", name:"offset shadow blocks" },
+  { id:"cards",  cls:"dev-cards",  name:"soft cards with gaps" },
+  { id:"bands",  cls:"dev-bands",  name:"tinted bands" }
+];
+
+const DENSITY = [
+  { id:"tight",    cls:"den-tight",    name:"tight" },
+  { id:"normal",   cls:"den-normal",   name:"normal" },
+  { id:"generous", cls:"den-generous", name:"generous" }
+];
+
+const ACCENT = [
+  { id:"minimal", cls:"acc-minimal", name:"buttons only" },
+  { id:"rules",   cls:"acc-rules",   name:"buttons and edges" },
+  { id:"band",    cls:"acc-band",    name:"a band across the top" },
+  { id:"mark",    cls:"acc-mark",    name:"a marker on the strapline" }
+];
+
+const PALETTES = [
+  { id:"slate",  name:"Slate",  bg:"#F4F6F8", ink:"#1E2733", accent:"#33628F", soft:"#DCE4EC", muted:"#5A6674" },
+  { id:"clay",   name:"Clay",   bg:"#FBF6F1", ink:"#2E211B", accent:"#A9482F", soft:"#EFDCD0", muted:"#6E5A4E" },
+  { id:"forest", name:"Forest", bg:"#F2F6F2", ink:"#16241B", accent:"#2C6742", soft:"#D6E5DA", muted:"#51655A" },
+  { id:"navy",   name:"Navy",   bg:"#F6F5F1", ink:"#131C2E", accent:"#7C590F", soft:"#E1DFD5", muted:"#565F6E" },
+  { id:"berry",  name:"Berry",  bg:"#FBF5F7", ink:"#2A1922", accent:"#8C3A5E", soft:"#F0DDE5", muted:"#6B5460" },
+  { id:"mono",   name:"Mono",   bg:"#FFFFFF", ink:"#141414", accent:"#141414", soft:"#E6E6E6", muted:"#6A6A6A" }
+];
+
+/* Named shortcuts the customer sees. Each one is just a composition. */
+const PRESETS = [
+  { id:"classic",   name:"Classic",   d:{type:"editorial", layout:"poster",  device:"rules",  density:"generous", accent:"mark"} },
+  { id:"modern",    name:"Modern",    d:{type:"expanded",  layout:"overlay", device:"bands",  density:"normal",   accent:"rules"} },
+  { id:"friendly",  name:"Friendly",  d:{type:"rounded",   layout:"splitleft", device:"cards", density:"normal",  accent:"minimal"} },
+  { id:"workhorse", name:"Workhorse", d:{type:"condensed", layout:"stack",   device:"slab",   density:"tight",    accent:"band"} },
+  { id:"quirky",    name:"Quirky",    d:{type:"wonky",     layout:"split",   device:"offset", density:"normal",   accent:"mark"} }
+];
+
+const BUSINESSES = [
+  {
+    id:"groom", tab:"Dog groomer", tabFor:"Marsh Lane Dog Grooming, Bristol", motif:"paw",
+    domain:"marshlanedoggrooming.co.uk", logo:"Marsh Lane Dog Grooming",
+    read:"Appointment led, local, half the job is reassuring someone about their dog",
+    world:"A small warm room, towels on a rail, a whiteboard of prices, dogs that would rather be elsewhere",
+    design:{ type:"rounded", layout:"splitleft", device:"cards", density:"normal", accent:"minimal", pal:"forest" },
+    why:"Soft corners and filled cards because nothing here should feel clinical. Picture on the left so you meet a dog before you meet a price list.",
+    blocks:["hero","services","facts"],
+    nav:["Services","Prices","Find us"], phone:"0117 496 0184",
+    eyebrow:"Bedminster, Bristol",
+    h:"Calm, careful dog grooming in south Bristol",
+    p:"Small salon, one dog at a time, no cages. Nervous dogs and old boys very welcome. Twelve years doing this and counting.",
+    cta:"Book a slot",
+    services:[
+      ["Full groom","Bath, dry, clip, nails and ears. Around two hours.","from &pound;45"],
+      ["Bath and tidy","Wash, blow dry, a trim round the face and feet.","from &pound;28"],
+      ["Puppy first visit","A gentle half hour so it is never scary again.","&pound;20"]
+    ],
+    facts:[["Tues to Sat",", 8.30am to 5pm"],["14 Marsh Lane",", Bristol BS3 4QT"],["Parking"," on the street outside"]]
+  },
+  {
+    id:"florist", tab:"Wedding florist", tabFor:"Fern and Fettle, Frome", motif:"leaf",
+    domain:"fernandfettle.co.uk", logo:"Fern and Fettle",
+    read:"Bought by looking, booked eighteen months ahead, chosen on trust",
+    world:"Buckets on a wet floor, brown paper and twine, a chalkboard, everything seasonal and slightly wild",
+    design:{ type:"editorial", layout:"poster", device:"rules", density:"generous", accent:"mark", pal:"berry" },
+    why:"Centred and airy like a piece of wedding stationery, with hairline rules and nothing heavy anywhere. The photographs come before a single price, because that is the order a couple actually decides in.",
+    blocks:["hero","gallery","proof","services","facts"],
+    nav:["Weddings","Gallery","Enquire"], phone:"01373 460 118",
+    eyebrow:"Frome, Somerset",
+    h:"Seasonal flowers for weddings across Somerset",
+    p:"Grown down the road where I can, never flown in from the other side of the world. One wedding a weekend, so yours gets all of my attention.",
+    cta:"Check your date",
+    services:[
+      ["Full wedding","Bouquets, buttonholes, ceremony and tables. Consultation through to setting up on the day.","from &pound;900"],
+      ["Bouquets only","Bridal bouquet and up to four for the party.","from &pound;280"],
+      ["Buckets of blooms","You arrange them. I grow, cut and deliver on the Friday.","from &pound;160"]
+    ],
+    proof:["She grew half of it in the field behind her house and it was the thing everyone talked about all night. Two weeks of texts about peonies and she never once made me feel daft.","Hannah and Rob, married at Babington, June"],
+    facts:[["Booking"," 2026 and 2027 dates now"],["Covers"," Somerset, Wiltshire, Bath"],["Studio visits"," by appointment"]]
+  },
+  {
+    id:"plumber", tab:"Plumber", tabFor:"Hadley Plumbing and Heating, Kettering", motif:"spanner",
+    domain:"hadleyplumbing.co.uk", logo:"Hadley Plumbing",
+    read:"Urgent, decided in under thirty seconds, usually on a phone with wet hands",
+    world:"A sign written van, a laminated card through the door, high visibility everything",
+    design:{ type:"condensed", layout:"stack", device:"slab", density:"tight", accent:"band", pal:"slate" },
+    why:"Condensed capitals and three pixel borders because this has to read like the side of a van. Tight spacing so the number, the areas and the price all fit on one phone screen with no scrolling.",
+    blocks:["callbar","hero","coverage","services","facts"],
+    nav:["Services","Areas","Call out"], phone:"07700 900 412",
+    eyebrow:"Kettering and 20 miles round",
+    h:"Emergency plumber, out to you today",
+    p:"Twenty two years on the tools. No call out charge, and I will tell you on the phone if it is something you can sort yourself.",
+    cta:"Call now",
+    coverage:["Kettering","Corby","Wellingborough","Rothwell","Desborough","Burton Latimer","Thrapston"],
+    services:[
+      ["Emergency call out","Burst pipes, leaks, no heat, no hot water. Same day, seven days.","no call out fee"],
+      ["Boiler service","Full service and a written report, about an hour.","&pound;85"],
+      ["Bathrooms","Full fit or a swap out. Fixed price before I start.","quoted"]
+    ],
+    facts:[["7 days"," 7am to 9pm"],["Gas Safe"," registered"],["Card, cash or transfer"," on the day"]]
+  },
+  {
+    id:"golf", tab:"Golf school", tabFor:"Greenfinch Golf School, Surrey", motif:"flag",
+    domain:"greenfinchgolf.co.uk", logo:"Greenfinch Golf School",
+    read:"Joining a group, so the decision is social long before it is technical",
+    world:"Wide open green, long shadows, a scorecard, a clubhouse they are slightly afraid of",
+    design:{ type:"expanded", layout:"overlay", device:"bands", density:"normal", accent:"rules", pal:"navy" },
+    why:"Words straight over a wide photograph, because the picture is the pitch. Tinted bands rather than borders so it stays calm, and the brass accent does the job the clubhouse usually does.",
+    blocks:["hero","proof","services","facts"],
+    nav:["Courses","Trips","Join"], phone:"01483 660 274",
+    eyebrow:"Surrey Hills",
+    h:"Learn golf without the golf club bit",
+    p:"Small groups, proper coaching, and nobody sighing behind you on the tee. Beginners very welcome and most people arrive on their own.",
+    cta:"See the courses",
+    proof:["I had never held a club and I was dreading it. Six weeks later I am playing nine holes on a Sunday with three women I met in the group.","Priya, joined the spring beginners course"],
+    services:[
+      ["Six week beginners","Two hours a week, clubs provided, ends with nine holes together.","&pound;180"],
+      ["Improvers","For anyone who plays but has never been taught properly.","&pound;150"],
+      ["Away trips","Four days. Coaching in the morning, golf in the afternoon.","from &pound;690"]
+    ],
+    facts:[["Wednesdays and Saturdays"," all year"],["Clubs"," provided if you need them"],["Groups"," of six, never more"]]
+  }
+];
+
+const BLOCK_NAMES = {
+  callbar:"the phone number, across the top",
+  hero:"who you are and what you do",
+  gallery:"the photographs",
+  services:"what you do and what it costs",
+  coverage:"where you cover",
+  proof:"a word from a customer",
+  facts:"the practical bits"
+};
+
+const el = function(id){ return document.getElementById(id); };
+const byId = function(arr, id){ return arr.filter(function(x){ return x.id === id; })[0]; };
+const pick = function(arr){ return arr[Math.floor(Math.random() * arr.length)]; };
+
+const bizWrap=el("bizzes"), chipWrap=el("chips"), dotWrap=el("dots"),
+      preview=el("preview"), briefEl=el("brief"), frameUrl=el("frameUrl"),
+      capLeft=el("capLeft"), capRight=el("capRight"), resetBtn=el("reset"),
+      rollBtn=el("roll");
+
+let biz = BUSINESSES[0];
+let d = Object.assign({}, biz.design);
+let overruled = false;
+
+/* Not every combination is worth shipping, so a few are ruled out.
+   Boring, and it is the reason nothing ugly reaches a customer. */
+function allowed(c, b){
+  if(c.layout === "poster" && b.blocks.indexOf("gallery") === -1) return false;
+  if(c.layout === "overlay" && (c.device === "offset" || c.device === "cards")) return false;
+  if(c.device === "slab" && c.density === "generous") return false;
+  if(c.device === "cards" && c.type === "condensed") return false;
+  return true;
+}
+
+function reroll(){
+  var c, guard = 0;
+  do {
+    c = { type:pick(TYPE).id, layout:pick(LAYOUT).id, device:pick(DEVICE).id,
+          density:pick(DENSITY).id, accent:pick(ACCENT).id, pal:pick(PALETTES).id };
+    guard++;
+  } while(!allowed(c, biz) && guard < 200);
+  d = c; overruled = true; render();
+}
+
+function navHtml(b){
+  return '<div class="p-nav"><div class="p-brand">' + MOTIF[b.motif] +
+    '<div class="p-logo">' + b.logo + '</div></div>' +
+    '<div class="p-navlinks">' + b.nav.map(function(n){ return "<span>" + n + "</span>"; }).join("") + '</div>' +
+    '<div class="p-call">' + b.phone + '</div></div>';
+}
+
+function buildBlocks(b){
+  var out = '<div class="p-accentbar"></div>', navDone = false;
+  b.blocks.forEach(function(k){
+    if(k !== "callbar" && !navDone){ out += navHtml(b); navDone = true; }
+    if(k === "callbar") out += '<div class="p-callbar">Burst pipe? Call ' + b.phone + '</div>';
+    if(k === "hero") out += '<div class="p-hero"><div class="p-hero-copy">' +
+      '<div class="p-eyebrow">' + b.eyebrow + '</div><h4>' + b.h + '</h4><p>' + b.p + '</p>' +
+      '<span class="p-cta">' + b.cta + '</span></div>' +
+      '<div class="p-photo"><span>Your photo</span></div></div>';
+    if(k === "gallery") out += '<div class="p-gallery">' +
+      '<div class="p-photo"><span>Your photo</span></div><div class="p-photo"><span>Your photo</span></div>' +
+      '<div class="p-photo"><span>Your photo</span></div></div>';
+    if(k === "coverage") out += '<div class="p-cover"><div class="ct">Areas covered</div><div class="cs">' +
+      b.coverage.map(function(c){ return "<span>" + c + "</span>"; }).join("") + '</div></div>';
+    if(k === "proof") out += '<div class="p-proof"><span class="q">&ldquo;</span><blockquote>' +
+      b.proof[0] + '<cite>' + b.proof[1] + '</cite></blockquote></div>';
+    if(k === "services") out += '<div class="p-svcs">' + b.services.map(function(s){
+      return '<div class="p-svc"><b>' + s[0] + '</b><i>' + s[1] + '</i><u>' + s[2] + '</u></div>'; }).join("") + '</div>';
+    if(k === "facts") out += '<div class="p-foot">' + b.facts.map(function(f){
+      return '<span><b>' + f[0] + '</b>' + f[1] + '</span>'; }).join("") + '</div>';
+  });
+  return out;
+}
+
+function render(){
+  var ty = byId(TYPE, d.type), la = byId(LAYOUT, d.layout), dv = byId(DEVICE, d.device),
+      de = byId(DENSITY, d.density), ac = byId(ACCENT, d.accent), pa = byId(PALETTES, d.pal);
+
+  LAYOUT.concat(DEVICE, DENSITY, ACCENT).forEach(function(x){ preview.classList.remove(x.cls); });
+  [la, dv, de, ac].forEach(function(x){ preview.classList.add(x.cls); });
+  Object.keys(ty.v).forEach(function(k){ preview.style.setProperty(k, String(ty.v[k])); });
+  ["bg","ink","accent","soft","muted"].forEach(function(k){ preview.style.setProperty("--p-" + k, pa[k]); });
+
+  preview.innerHTML = buildBlocks(biz) + '<div class="p-strip"></div>';
+  frameUrl.textContent = biz.domain;
+  capLeft.textContent = la.name + ", " + dv.name + ", " + de.name + " spacing";
+  capRight.textContent = ty.name;
+
+  var matched = PRESETS.filter(function(pr){
+    return pr.d.type===d.type && pr.d.layout===d.layout && pr.d.device===d.device &&
+           pr.d.density===d.density && pr.d.accent===d.accent; })[0];
+
+  briefEl.innerHTML =
+    '<span class="bl">Read as</span><span class="bv">' + biz.read + '</span>' +
+    '<span class="bl">Their world looks like</span><span class="bv">' + biz.world + '</span>' +
+    '<span class="bl">Sections, in this order</span><span class="bv">' +
+      biz.blocks.map(function(k){ return BLOCK_NAMES[k]; }).join("<br>") + '</span>' +
+    '<span class="bl">Design</span><span class="bv">' +
+      'Lettering <em>' + ty.name + '</em><br>' +
+      'Hero <em>' + la.name + '</em><br>' +
+      'Edges <em>' + dv.name + '</em><br>' +
+      'Spacing <em>' + de.name + '</em><br>' +
+      'Colour <em>' + pa.name + '</em>, ' + ac.name +
+      (matched ? '<br>Which happens to be <em>' + matched.name + '</em>' : '') + '</span>' +
+    '<div class="brief-why">' + (overruled
+      ? 'You have changed it by hand. Hit reset to see what it chose on its own.'
+      : biz.why) + '</div>';
+
+  bizWrap.querySelectorAll(".bz").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.id === biz.id)); });
+  chipWrap.querySelectorAll(".chip").forEach(function(b){ b.setAttribute("aria-pressed", String(!!matched && b.dataset.id === matched.id)); });
+  dotWrap.querySelectorAll(".dot-btn").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.id === d.pal)); });
+  resetBtn.classList.toggle("on", overruled);
+}
+
+BUSINESSES.forEach(function(b){
+  var n = document.createElement("button");
+  n.className = "bz"; n.type = "button"; n.dataset.id = b.id;
+  n.innerHTML = '<span class="bz-name">' + MOTIF[b.motif] + b.tab + '</span><span class="bz-for">' + b.tabFor + '</span>';
+  n.addEventListener("click", function(){ biz = b; d = Object.assign({}, b.design); overruled = false; render(); });
+  bizWrap.appendChild(n);
+});
+
+PRESETS.forEach(function(pr){
+  var n = document.createElement("button");
+  n.className = "chip"; n.type = "button"; n.dataset.id = pr.id; n.textContent = pr.name;
+  n.addEventListener("click", function(){ d = Object.assign({}, pr.d, {pal:d.pal}); overruled = true; render(); });
+  chipWrap.appendChild(n);
+});
+
+PALETTES.forEach(function(p){
+  var n = document.createElement("button");
+  n.className = "dot-btn"; n.type = "button"; n.dataset.id = p.id; n.title = p.name;
+  n.setAttribute("aria-label", "Colour: " + p.name);
+  n.innerHTML = '<i style="background:' + p.bg + '"></i><i style="background:' + p.accent + '"></i>';
+  n.addEventListener("click", function(){ d.pal = p.id; overruled = true; render(); });
+  dotWrap.appendChild(n);
+});
+
+rollBtn.addEventListener("click", reroll);
+resetBtn.addEventListener("click", function(){ d = Object.assign({}, biz.design); overruled = false; render(); });
+
+render();
+</script>

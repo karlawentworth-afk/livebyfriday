@@ -1,0 +1,26 @@
+# Netlify
+.netlify/
+.netlify-cache/
+
+# Never commit real secrets. The service role key, the Anthropic key, the
+# Stripe webhook secret and the build key all live in Netlify environment
+# variables and must never appear in a file in this repo.
+.env
+.env.*
+!.env.example
+
+# Node, if a tool ever pulls any in
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Editors and OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Local scratch
+tmp/
+*.local.*

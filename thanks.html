@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thanks &middot; Live by Friday</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Public+Sans:wght@400;600;700&family=DM+Mono:wght@400&display=swap">
+<style>
+:root{--paper:#FCFBF8;--ink:#15171C;--ink-2:#565C66;--rule:#E0DDD3;--hi:#F6B900}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#121317;--ink:#F1EFE8;--ink-2:#979DA6;--rule:#2B2E35}}
+:root[data-theme=dark]{--paper:#121317;--ink:#F1EFE8;--ink-2:#979DA6;--rule:#2B2E35}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:17px;line-height:1.6;display:grid;place-items:center;min-height:100vh;padding:32px}
+.card{max-width:600px}
+img{width:180px;height:auto;display:block;margin-bottom:34px}
+h1{font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 110;font-weight:800;font-size:clamp(2rem,6vw,3.2rem);letter-spacing:-0.025em;line-height:1.04;margin:0 0 20px;text-wrap:balance}
+p{margin:0 0 16px;color:var(--ink-2)}
+ol{color:var(--ink-2);padding-left:20px;margin:24px 0}
+li{margin-bottom:10px}
+li b{color:var(--ink)}
+.ref{font-family:"DM Mono",monospace;font-size:.8rem;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:18px;margin-top:32px}
+a.back{display:inline-block;margin-top:8px;font-family:"Archivo",sans-serif;font-weight:700;color:var(--ink);background:var(--hi);padding:12px 20px;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="card">
+  <img src="/logo.png" alt="Live by Friday">
+  <h1 id="h">Got it. Thanks.</h1>
+  <p id="sub">Your answers are in and I have started on it.</p>
+  <ol>
+    <li><b>Today or tomorrow</b>, I build it and send you a link.</li>
+    <li><b>You have a look</b>, on your phone, in your own time.</li>
+    <li><b>Tell me what to change</b>, or say go and it is live on your address within the hour.</li>
+  </ol>
+  <p>If you think of something you forgot, just reply to the email. Nothing is set in stone yet.</p>
+  <a class="back" href="/">Back to the site</a>
+  <p class="ref" id="ref"></p>
+</div>
+<script>
+var q=new URLSearchParams(location.search);
+if(q.get("route")==="preview"){
+  document.getElementById("h").textContent="Got it. Nothing to pay yet.";
+  document.getElementById("sub").textContent="Your answers are in. I will build it and send you a link, and you only pay if you want to keep it.";
+}else{
+  document.getElementById("h").textContent="Paid and under way.";
+  document.getElementById("sub").textContent="Payment went through and your receipt is on its way from Stripe. I have started on the site.";
+}
+var r=q.get("ref"); if(r) document.getElementById("ref").textContent="Your reference: "+r;
+</script>
+</body>
+</html>
