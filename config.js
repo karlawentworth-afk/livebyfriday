@@ -8,8 +8,8 @@ window.LBF = {
   // The anon key is MEANT to be public. The leads table has row level
   // security that allows insert and nothing else, so nobody can read
   // anything back out with it.
-  SUPABASE_URL: "https://YOUR-PROJECT.supabase.co",
-  SUPABASE_ANON_KEY: "YOUR-ANON-KEY",
+  SUPABASE_URL: "https://tzzoileuvbvvflrcuhgu.supabase.co",
+  SUPABASE_ANON_KEY: "PASTE_ANON_KEY_HERE",
   BUCKET: "intake",
 
   // Stripe payment links, one per package.
