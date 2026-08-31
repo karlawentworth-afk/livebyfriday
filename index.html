@@ -37,10 +37,10 @@ p{margin:0}
 .num{font-variant-numeric:tabular-nums}
 
 .masthead{border-bottom:2px solid var(--rule-hard);background:var(--paper);position:sticky;top:0;z-index:40}
-.masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:64px}
+.masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:80px}
 .mark{display:flex;align-items:center;text-decoration:none}
-.mark img{width:auto;height:40px;display:block}
-@media (max-width:520px){.mark img{height:32px}}
+.mark img{display:block;width:auto;height:auto;max-height:56px;max-width:170px}
+@media (max-width:520px){.masthead .wrap{height:66px}.mark img{max-height:44px;max-width:130px}}
 .mark .bolt{display:inline-grid;place-items:center;width:26px;height:26px;background:var(--hi);color:var(--hi-ink);font-size:.9rem;transform:translateY(4px)}
 .mast-right{display:flex;align-items:center;gap:22px}
 .mast-price{font-family:"DM Mono",monospace;font-size:.78rem;letter-spacing:.08em;color:var(--ink-2)}
@@ -335,7 +335,7 @@ p{margin:0}
 
 <header class="masthead">
   <div class="wrap">
-    <a class="mark" href="/"><img src="/logo.png" alt="Live by Friday" width="150"></a>
+    <a class="mark" href="/"><img src="/logo.png" alt="Live by Friday"></a>
     <div class="mast-right">
       <span class="mast-price num">&pound;99 first year</span>
       <a class="btn sm" href="/start.html">Start yours</a>

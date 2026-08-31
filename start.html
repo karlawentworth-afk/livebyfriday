@@ -38,10 +38,10 @@ p{margin:0}
 .label{font-family:"DM Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
 
 .masthead{border-bottom:2px solid var(--rule-hard);background:var(--paper)}
-.masthead .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:960px}
+.masthead .wrap{display:flex;align-items:center;justify-content:space-between;height:80px;max-width:960px}
 .mark{display:flex;align-items:center;text-decoration:none}
-.mark img{width:auto;height:40px;display:block}
-@media (max-width:520px){.mark img{height:32px}}
+.mark img{display:block;width:auto;height:auto;max-height:56px;max-width:170px}
+@media (max-width:520px){.masthead .wrap{height:66px}.mark img{max-height:44px;max-width:130px}}
 .mark .bolt{display:inline-grid;place-items:center;width:25px;height:25px;background:var(--hi);color:var(--hi-ink);font-size:.86rem;transform:translateY(4px)}
 .saved{font-family:"DM Mono",monospace;font-size:.7rem;color:var(--ink-2);opacity:0;transition:opacity .3s ease}
 .saved.on{opacity:1}
@@ -127,7 +127,7 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
 
 <header class="masthead">
   <div class="wrap">
-    <a class="mark" href="/"><img src="/logo.png" alt="Live by Friday" width="150"></a>
+    <a class="mark" href="/"><img src="/logo.png" alt="Live by Friday"></a>
     <span class="saved" id="saved">Draft saved</span>
   </div>
 </header>
