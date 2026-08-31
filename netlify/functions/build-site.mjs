@@ -40,6 +40,7 @@ THE RULES ABOUT WORDS, WHICH MATTER MORE THAN THE DESIGN
 - Plain warm British English. Short sentences. Write how a person actually talks. No marketing language: no "bespoke", "passionate", "solutions", "elevate", "unlock", "seamless", "premier", "cutting edge".
 - Never use em dashes.
 - If their answers are thin, write less. A short honest page beats a padded one.
+- The eyebrow, headline and intro must each say something different. Never repeat a phrase between them.
 - British spelling and £ for money.
 
 Return the brief through the tool. Nothing else.`;
@@ -73,7 +74,7 @@ const TOOL = {
         properties:{
           title:      { type:"string", description:"Browser tab title. Business name, then what they do, then the town." },
           meta:       { type:"string", description:"Search result description, under 155 characters." },
-          eyebrow:    { type:"string", description:"The small line above the headline. Usually the town or area." },
+          eyebrow:    { type:"string", description:"A short place tag above the headline. Usually just the town or area, under 40 characters. Never a sentence, and never repeat anything the headline says." },
           headline:   { type:"string", description:"Under 60 characters. What they do and where, in their own register." },
           intro:      { type:"string", description:"Two or three short sentences under the headline." },
           cta:        { type:"string", description:"Button label, two or three words, specific to this trade." },
@@ -84,10 +85,11 @@ const TOOL = {
                           required:["name","desc"] } },
           coverage:   { type:"array", items:{ type:"string" }, maxItems:10 },
           facts:      { type:"array", maxItems:4, items:{ type:"object", properties:{
-                          strong:{type:"string"}, rest:{type:"string"} }, required:["strong","rest"] } },
+                          strong:{type:"string"}, rest:{type:"string"} }, required:["strong","rest"] },
+                        description:"Practical details only, taken from the hours, address, areas or contact the owner supplied. Omit entirely if they supplied none. Never write a general statement about how good the service is." },
           photo_alt:  { type:"array", items:{ type:"string" }, description:"Alt text, one per photo, describing what a visitor would see." }
         },
-        required:["title","meta","eyebrow","headline","intro","cta","navlinks","services","facts"]
+        required:["title","meta","eyebrow","headline","intro","cta","navlinks","services"]
       }
     },
     required:["read","world","why","design","blocks","copy"]
