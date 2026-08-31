@@ -37,12 +37,12 @@ p{margin:0}
 .num{font-variant-numeric:tabular-nums}
 
 .masthead{border-bottom:2px solid var(--rule-hard);background:var(--paper);position:sticky;top:0;z-index:40}
-.masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:80px}
-.mark{display:flex;align-items:center;text-decoration:none}
-.mark img{display:block;width:auto;height:auto;max-height:56px;max-width:170px}
-@media (max-width:520px){.masthead .wrap{height:66px}.mark img{max-height:44px;max-width:130px}}
+.masthead .wrap{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;height:64px}
+.mark{display:flex;text-decoration:none;position:relative;z-index:2}
+.mark img{display:block;width:150px;height:auto;margin-top:6px}
+@media (max-width:520px){.masthead .wrap{height:56px}.mark img{width:106px;margin-top:5px}}
 .mark .bolt{display:inline-grid;place-items:center;width:26px;height:26px;background:var(--hi);color:var(--hi-ink);font-size:.9rem;transform:translateY(4px)}
-.mast-right{display:flex;align-items:center;gap:22px}
+.mast-right{display:flex;align-items:center;gap:22px;height:64px}
 .mast-price{font-family:"DM Mono",monospace;font-size:.78rem;letter-spacing:.08em;color:var(--ink-2)}
 @media (max-width:640px){.mast-price{display:none}}
 
@@ -53,7 +53,7 @@ p{margin:0}
 .btn.ghost{background:transparent;color:var(--ink)}
 .btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--hi);outline-offset:3px}
 
-.hero{padding:78px 0 0}
+.hero{padding:104px 0 0}
 .hero .kicker{margin-bottom:22px}
 .hero h1{margin-bottom:26px}
 .hero h1 em{font-style:normal;background:var(--hi);color:var(--hi-ink);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}

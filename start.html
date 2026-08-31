@@ -38,15 +38,15 @@ p{margin:0}
 .label{font-family:"DM Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
 
 .masthead{border-bottom:2px solid var(--rule-hard);background:var(--paper)}
-.masthead .wrap{display:flex;align-items:center;justify-content:space-between;height:80px;max-width:960px}
-.mark{display:flex;align-items:center;text-decoration:none}
-.mark img{display:block;width:auto;height:auto;max-height:56px;max-width:170px}
-@media (max-width:520px){.masthead .wrap{height:66px}.mark img{max-height:44px;max-width:130px}}
+.masthead .wrap{display:flex;align-items:flex-start;justify-content:space-between;height:64px;max-width:960px}
+.mark{display:flex;text-decoration:none;position:relative;z-index:2}
+.mark img{display:block;width:150px;height:auto;margin-top:6px}
+@media (max-width:520px){.masthead .wrap{height:56px}.mark img{width:106px;margin-top:5px}}
 .mark .bolt{display:inline-grid;place-items:center;width:25px;height:25px;background:var(--hi);color:var(--hi-ink);font-size:.86rem;transform:translateY(4px)}
-.saved{font-family:"DM Mono",monospace;font-size:.7rem;color:var(--ink-2);opacity:0;transition:opacity .3s ease}
+.saved{font-family:"DM Mono",monospace;font-size:.7rem;color:var(--ink-2);opacity:0;transition:opacity .3s ease;align-self:center;height:64px;display:flex;align-items:center}
 .saved.on{opacity:1}
 
-.top{padding:52px 0 34px}
+.top{padding:82px 0 34px}
 .top h1{margin-bottom:16px}
 .top p{color:var(--ink-2);max-width:46ch}
 .prog{display:flex;gap:5px;margin-top:30px}
