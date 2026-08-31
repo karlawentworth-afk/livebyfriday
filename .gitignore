@@ -24,3 +24,6 @@ Thumbs.db
 # Local scratch
 tmp/
 *.local.*
+
+# Test photos (large, from client projects, not source code)
+test/photos/
