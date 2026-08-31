@@ -60,16 +60,16 @@ p{margin:0}
 .hero .lede{font-size:clamp(1.06rem,1.9vw,1.3rem);color:var(--ink-2);max-width:38ch;margin-bottom:30px}
 .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
 
-.ticker{margin-top:64px;border-top:2px solid var(--rule-hard);border-bottom:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,1fr)}
-.ticker div{padding:18px 0 20px;border-right:1px solid var(--rule)}
-.ticker div:last-child{border-right:0}
-.ticker .big{font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 112;font-weight:800;font-size:1.5rem;letter-spacing:-0.02em;line-height:1.1}
-.ticker .cap{font-size:.82rem;color:var(--ink-2);margin-top:4px}
-@media (max-width:720px){
-  .ticker{grid-template-columns:repeat(2,1fr)}
-  .ticker div{padding-left:0;border-bottom:1px solid var(--rule)}
-  .ticker div:nth-child(2n){border-right:0;padding-left:18px}
-  .ticker div:nth-child(n+3){border-bottom:0}
+.ticker{margin-top:60px;border-top:2px solid var(--rule-hard);border-bottom:1px solid var(--rule);display:grid;grid-template-columns:repeat(3,1fr)}
+.ticker div{padding:26px 26px 28px 0}
+.ticker div + div{border-left:1px solid var(--rule);padding-left:26px}
+.ticker .big{font-family:"Archivo",sans-serif;font-variation-settings:"wdth" 110;font-weight:800;font-size:clamp(1.5rem,2.4vw,1.85rem);letter-spacing:-0.028em;line-height:1;font-variant-numeric:tabular-nums}
+.ticker .cap{font-size:.88rem;color:var(--ink-2);line-height:1.45;margin-top:9px;max-width:24ch}
+@media (max-width:760px){
+  .ticker{grid-template-columns:1fr}
+  .ticker div{padding:20px 0 21px;border-bottom:1px solid var(--rule)}
+  .ticker div + div{border-left:0;padding-left:0}
+  .ticker div:last-child{border-bottom:0;padding-bottom:4px}
 }
 
 .sec{padding:82px 0}
@@ -355,10 +355,9 @@ p{margin:0}
   </div>
   <div class="wrap">
     <div class="ticker">
-      <div><div class="big num">&pound;99</div><div class="cap">First year, everything in</div></div>
-      <div><div class="big">5 days</div><div class="cap">From form to live, usually less</div></div>
-      <div><div class="big">15 mins</div><div class="cap">That is all you have to do</div></div>
-      <div><div class="big">Yours</div><div class="cap">Domain in your name, not mine</div></div>
+      <div><div class="big num">15 minutes</div><div class="cap">Of your time. That is the whole job.</div></div>
+      <div><div class="big num">&pound;49 a year</div><div class="cap">After the first year. Cancel whenever you like.</div></div>
+      <div><div class="big">In your name</div><div class="cap">The web address is yours. Take it anywhere.</div></div>
     </div>
   </div>
 </section>
