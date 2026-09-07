@@ -502,7 +502,9 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
                 + "-" + Date.now().toString(36);
       var paths = await uploadPhotos(ref);
 
+      var leadId = crypto.randomUUID();
       var row = {
+        id: leadId,
         business_name: f.business_name, trade: f.trade || null, one_liner: f.one_liner || null,
         area: f.area || null, services: f.services || [],
         contact_name: f.contact_name || null, phone: f.phone || null, email: f.email,
@@ -514,9 +516,8 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
         promo_code: (C.PROMO && C.PROMO.SHOW) ? C.PROMO.CODE : null
       };
 
-      var res = await db.from("leads").insert(row).select("id").single();
+      var res = await db.from("leads").insert(row);
       if(res.error) throw new Error(res.error.message);
-      var leadId = res.data.id;
 
       try{ localStorage.removeItem(KEY); }catch(e){}
 
