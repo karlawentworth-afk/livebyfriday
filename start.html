@@ -119,6 +119,14 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
 .status{margin-top:18px;font-size:.92rem;min-height:1.5em}
 .status.bad{color:var(--bad)}
 .status.ok{color:var(--ok)}
+.domain-results{margin-top:10px}
+.domain-results .dr{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:.95rem}
+.domain-results .dr+.dr{border-top:1px solid var(--rule)}
+.dr-name{font-weight:600;font-family:"DM Mono",monospace;font-size:.88rem}
+.dr-yes{color:var(--ok);font-weight:600}
+.dr-no{color:var(--bad)}
+.dr-wait{color:var(--ink-2)}
+.domain-note{font-size:.82rem;color:var(--ink-2);margin-top:14px;max-width:52ch}
 .foot{border-top:1px solid var(--rule);margin-top:50px;padding:22px 0 60px;font-size:.84rem;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between}
 @media (prefers-reduced-motion:reduce){*{transition-duration:.001ms!important}}
 </style>
@@ -164,11 +172,13 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
         <label><span class="lb">What do you do, in one sentence?</span>
           <input type="text" name="one_liner" placeholder="Calm, careful dog grooming, one dog at a time, no cages"></label>
       </div>
-      <div class="row two">
+      <div class="row">
         <label><span class="lb">Where are you, or where do you cover?</span>
           <input type="text" name="area" placeholder="Bedminster, Bristol. Or: Kettering and 20 miles round"></label>
-        <label><span class="lb">Anything else I should know? <i>optional</i></span>
-          <input type="text" name="notes" placeholder="Twelve years doing this, nervous dogs a speciality"></label>
+      </div>
+      <div class="row">
+        <label><span class="lb">Anything else I should know?</span>
+          <textarea name="notes" placeholder="The more you tell me, the better the site. How long you have been going, what makes you different, anything you are proud of, anything people always ask. Even a rough paragraph helps."></textarea></label>
       </div>
     </fieldset>
 
@@ -200,13 +210,17 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
     <fieldset>
       <legend>Your web address</legend>
       <p class="hint">It gets registered in your name with your details. Yours to keep, and yours to take elsewhere if you ever want to.</p>
-      <div class="row two">
+      <div class="row">
         <label><span class="lb">What would you like it to be?</span>
-          <input type="text" name="domain_wanted" placeholder="marshlanedoggrooming.co.uk">
+          <input type="text" name="domain_wanted" id="domainWanted" placeholder="marshlanedoggrooming" autocomplete="off" autocapitalize="none">
           <span class="errmsg"></span></label>
+        <div id="domainResults" class="domain-results" hidden></div>
+      </div>
+      <div class="row">
         <label><span class="lb">Or, already own one? <i>knocks &pound;15 off</i></span>
           <input type="text" name="domain_existing" placeholder="theoneialreadyhave.co.uk"></label>
       </div>
+      <p class="domain-note">We register the domain for you, in your name. If something you want is not available we will find the closest alternative and check with you first.</p>
     </fieldset>
 
     <fieldset>
@@ -525,6 +539,30 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
   }
 
   $("payNow").addEventListener("click", function(){ submit("pay_now"); });
+
+  /* ---- domain availability check ---- */
+  var domainInput = $("domainWanted"), domainBox = $("domainResults"), domainTimer;
+  domainInput.addEventListener("input", function(){
+    clearTimeout(domainTimer);
+    var raw = domainInput.value.trim();
+    if(!raw || raw.length < 2){ domainBox.hidden = true; return; }
+    domainTimer = setTimeout(function(){ checkDomain(raw); }, 600);
+  });
+  function checkDomain(raw){
+    domainBox.hidden = false;
+    domainBox.innerHTML = '<div class="dr"><span class="dr-wait">Checking...</span></div>';
+    fetch("/api/check-domain?name=" + encodeURIComponent(raw))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(d.error){ domainBox.innerHTML = '<div class="dr"><span class="dr-wait">' + d.error + '</span></div>'; return; }
+        domainBox.innerHTML = d.results.map(function(r){
+          if(r.available === true) return '<div class="dr"><span class="dr-name">' + r.domain + '</span><span class="dr-yes">&#10003; Available</span></div>';
+          if(r.available === false) return '<div class="dr"><span class="dr-name">' + r.domain + '</span><span class="dr-no">&#10007; Taken</span></div>';
+          return '<div class="dr"><span class="dr-name">' + r.domain + '</span><span class="dr-wait">Could not check</span></div>';
+        }).join("");
+      })
+      .catch(function(){ domainBox.innerHTML = '<div class="dr"><span class="dr-wait">Could not check right now</span></div>'; });
+  }
 
   restore(); drawThumbs(); progress();
 })();
