@@ -17,9 +17,9 @@ window.LBF = {
   // Live mode links look like  https://buy.stripe.com/xxxx
   // Swapping these three lines is the entire go live step.
   STRIPE: {
-    site:   "https://buy.stripe.com/test_REPLACE_99",
-    sorted: "https://buy.stripe.com/test_REPLACE_199",
-    lot:    "https://buy.stripe.com/test_REPLACE_349"
+    site:   "https://buy.stripe.com/test_bJe28ka4G0m3fPr5bB48000",
+    sorted: "https://buy.stripe.com/test_3cI7sEgt45Gn5aNfQf48001",
+    lot:    "https://buy.stripe.com/test_14A14g1ya6Kr5aN6fF48002"
   },
 
   // The launch offer. Set SHOW to false and the banner disappears.
