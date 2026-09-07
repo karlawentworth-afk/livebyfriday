@@ -178,7 +178,7 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
       </div>
       <div class="row">
         <label><span class="lb">Anything else I should know?</span>
-          <textarea name="notes" placeholder="The more you tell me, the better the site. How long you have been going, what makes you different, anything you are proud of, anything people always ask. Even a rough paragraph helps."></textarea></label>
+          <textarea name="notes" placeholder="The more you tell us, the better the site. How long you have been going, what makes you different, anything you are proud of, anything people always ask. Even a rough paragraph helps."></textarea></label>
       </div>
     </fieldset>
 
@@ -238,7 +238,7 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
 
     <fieldset>
       <legend>Your photos</legend>
-      <p class="hint">Up to six, straight off your phone. Sideways ones are fine, I will sort them out. No photos at all is also fine, we will manage.</p>
+      <p class="hint">Up to six, straight off your phone. Sideways ones are fine, we will sort them out. No photos at all is also fine, we will manage.</p>
       <div class="drop" id="drop" tabindex="0" role="button" aria-label="Add photos">
         <b>Tap to add photos</b>
         <span>Up to 6, JPG or PNG, 10MB each</span>
@@ -254,7 +254,7 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
       <div class="promo" id="promo" hidden></div>
 
       <div class="routes">
-        <button class="btn" type="button" id="payNow">Pay and I will start today
+        <button class="btn" type="button" id="payNow">Pay and we will start today
           <small id="payNowSub">Straight to checkout, then the photos and details go over</small></button>
       </div>
       <p class="status" id="status" role="status" aria-live="polite"></p>
@@ -460,7 +460,7 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
     if(!dw.value.trim() && !de.value.trim()){
       dw.classList.add("err");
       var m2 = dw.parentElement.querySelector(".errmsg");
-      m2.textContent = "Tell me what you would like, even roughly. I will check what is free.";
+      m2.textContent = "Tell us what you would like, even roughly. We will check what is free.";
       m2.classList.add("on");
       if(!first) first = dw;
       ok = false;
@@ -532,7 +532,7 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
       }
     } catch(err){
       console.error(err);
-      say("That did not go through: " + err.message + ". Your answers are still saved, so try again in a moment, or email hello@livebyfriday.co.uk and I will sort it.", "bad");
+      say("That did not go through: " + err.message + ". Your answers are still saved, so try again in a moment, or email hello@livebyfriday.co.uk and we will sort it.", "bad");
       busy = false;
       document.querySelectorAll(".routes .btn").forEach(function(b){ b.disabled = false; });
     }

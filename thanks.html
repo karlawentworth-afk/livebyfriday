@@ -28,7 +28,7 @@ a.back{display:inline-block;margin-top:8px;font-family:"Archivo",sans-serif;font
 <div class="card">
   <img src="/logo.png" alt="Live by Friday">
   <h1 id="h">Got it. Thanks.</h1>
-  <p id="sub">Your answers are in and I have started on it.</p>
+  <p id="sub">Your answers are in and we have started on it.</p>
   <ol>
     <li><b>Today or tomorrow</b>, I build it and send you a link.</li>
     <li><b>You have a look</b>, on your phone, in your own time.</li>
@@ -42,10 +42,10 @@ a.back{display:inline-block;margin-top:8px;font-family:"Archivo",sans-serif;font
 var q=new URLSearchParams(location.search);
 if(q.get("route")==="preview"){
   document.getElementById("h").textContent="Got it. Nothing to pay yet.";
-  document.getElementById("sub").textContent="Your answers are in. I will build it and send you a link, and you only pay if you want to keep it.";
+  document.getElementById("sub").textContent="Your answers are in. We will build it and send you a link, and you only pay if you want to keep it.";
 }else{
   document.getElementById("h").textContent="Paid and under way.";
-  document.getElementById("sub").textContent="Payment went through and your receipt is on its way from Stripe. I have started on the site.";
+  document.getElementById("sub").textContent="Payment went through and your receipt is on its way from Stripe. We have started on the site.";
 }
 var r=q.get("ref"); if(r) document.getElementById("ref").textContent="Your reference: "+r;
 </script>
