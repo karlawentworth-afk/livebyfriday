@@ -240,10 +240,8 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
       <div class="promo" id="promo" hidden></div>
 
       <div class="routes">
-        <button class="btn" type="button" id="payNow">Pay now and I will start today
+        <button class="btn" type="button" id="payNow">Pay and I will start today
           <small id="payNowSub">Straight to checkout, then the photos and details go over</small></button>
-        <button class="btn ghost" type="button" id="previewFirst">Send it to me first, I will pay if I like it
-          <small>You see the finished site before a penny changes hands</small></button>
       </div>
       <p class="status" id="status" role="status" aria-live="polite"></p>
     </fieldset>
@@ -527,7 +525,6 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
   }
 
   $("payNow").addEventListener("click", function(){ submit("pay_now"); });
-  $("previewFirst").addEventListener("click", function(){ submit("preview_first"); });
 
   restore(); drawThumbs(); progress();
 })();
