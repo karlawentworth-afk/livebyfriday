@@ -482,7 +482,7 @@ input::placeholder,textarea::placeholder{color:var(--ink-2);opacity:.7}
       var ext = (f.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g,"");
       var path = ref + "/" + (i+1) + "." + ext;
       say("Sending photo " + (i+1) + " of " + photos.length + "...");
-      var r = await db.storage.from(C.BUCKET).upload(path, f, { upsert:true, contentType:f.type });
+      var r = await db.storage.from(C.BUCKET).upload(path, f, { upsert:false, contentType:f.type });
       if(r.error) throw new Error("Photo " + (i+1) + " would not upload. " + r.error.message);
       paths.push(path);
     }
